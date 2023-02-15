@@ -1,78 +1,74 @@
 <app-encabezado></app-encabezado>
-<h3>
-  Rutina nueva
-</h3>
+<div>
+  <h3>Crear Rutina</h3>
+</div>
 
-<form
- [formGroup]="rutinaForm"
- (ngSubmit)="!rutinaForm.invalid && crearRutina(rutinaForm.value)"
->
+
+<form [formGroup]="rutinaForm" (ngSubmit)="!rutinaForm.invalid && crearRutina(rutinaForm.value)" id="rutinaForm">
   <!--Nombre-->
-  <div class="form-group mx-sm-3 mb-2">
-    <label for="nombre">Nombre</label>
-    <input
-      novalidate
-      id="nombre"
-      class="form-control"
-      formControlName="nombre"
-      placeholder="Nombre de la rutina"
-    />
-    <div
-      class="alert alert-danger alert-dismissible fade show"
-      *ngIf="
-        rutinaForm.get('nombre')!.hasError('required') &&
-        rutinaForm.get('nombre')!.touched
-      "
-    >
-      Nombre requerido
-    </div>
-    <div
-      class="alert alert-danger alert-dismissible fade show"
-      *ngIf="rutinaForm.get('nombre')!.hasError('minlength')"
-    >
-      El nombre es muy corto, debe tener al menos un caracter.
-    </div>
-    <div
-      class="alert alert-danger alert-dismissible fade show"
-      *ngIf="rutinaForm.get('nombre')!.hasError('maxlength')"
-    >
-      El nombre es muy largo, debe tener al maximo 80 caracteres.
+  <div class="form-group mx-sm-3 mb-2 container">
+    <div class="row">
+      <div class="col-4">
+        <label for="nombre">Nombre</label>
+      </div>
+      <div class="col-8">
+        <input novalidate id="nombre" class="form-control" formControlName="nombre" placeholder="Nombre de la rutina" />
+        <div class="alert alert-danger alert-dismissible fade show" *ngIf="
+          rutinaForm.get('nombre')!.hasError('required') &&
+          rutinaForm.get('nombre')!.touched
+        ">
+          Nombre requerido
+        </div>
+        <div class="alert alert-danger alert-dismissible fade show"
+          *ngIf="rutinaForm.get('nombre')!.hasError('minlength')">
+          El nombre es muy corto, debe tener al menos un caracter.
+        </div>
+        <div class="alert alert-danger alert-dismissible fade show"
+          *ngIf="rutinaForm.get('nombre')!.hasError('maxlength')">
+          El nombre es muy largo, debe tener al maximo 80 caracteres.
+        </div>
+      </div>
     </div>
   </div>
 
   <!--Descripción-->
-  <div class="form-group mx-sm-3 mb-2">
-    <label for="descripcion">Descripción</label>
-    <input
-      novalidate
-      id="descripcion"
-      class="form-control"
-      formControlName="descripcion"
-      placeholder="Descripción de la rutina"
-    />
-    <div
-      class="alert alert-danger alert-dismissible fade show"
-      *ngIf="
+  <div class="form-group mx-sm-3 mb-2 container">
+    <div class="row">
+      <div class="col-4">
+        <label for="descripcion">Descripción</label>
+      </div>
+      <div class="col-8">
+        <input novalidate id="descripcion" class="form-control" formControlName="descripcion"
+          placeholder="Descripción de la rutina" />
+        <div class="alert alert-danger alert-dismissible fade show" *ngIf="
         rutinaForm.get('descripcion')!.hasError('required') &&
         rutinaForm.get('descripcion')!.touched
-      "
-    >
-      Descripción requerida
-    </div>
-    <div
-      class="alert alert-danger alert-dismissible fade show"
-      *ngIf="rutinaForm.get('descripcion')!.hasError('maxlength')"
-    >
-      La descripción es demasiado larga, debe tener máximo 255 caracteres
-    </div>
-    <div
-      class="alert alert-danger alert-dismissible fade show"
-      *ngIf="rutinaForm.get('descripcion')!.hasError('minlength')"
-    >
-    La descripción es muy corta, debe tener al menos un caracter.
+      ">
+          Descripción requerida
+        </div>
+        <div class="alert alert-danger alert-dismissible fade show"
+          *ngIf="rutinaForm.get('descripcion')!.hasError('maxlength')">
+          La descripción es demasiado larga, debe tener máximo 255 caracteres
+        </div>
+        <div class="alert alert-danger alert-dismissible fade show"
+          *ngIf="rutinaForm.get('descripcion')!.hasError('minlength')">
+          La descripción es muy corta, debe tener al menos un caracter.
+        </div>
+      </div>
     </div>
   </div>
 
-  <button type="submit" class="btn btn-primary" [disabled]="!rutinaForm.valid">Crear</button>
-  <button type="button" class="btn btn-danger ml-3" (click)="cancelarRutina()">Cancelar</button>
+  <div class="container" id="buttons">
+    <div class="row">
+      <div class="col-2"></div>
+      <div class="col-3"><button type="submit" class="btn btn-primary" [disabled]="!rutinaForm.valid">
+          Crear Rutina
+        </button></div>
+      <div class="col-2"></div>
+      <div class="col-3"><button type="button" class="btn btn-danger ml-3" (click)="cancelarRutina()">
+          Cancelar
+        </button></div>
+      <div class="col-2"></div>
+    </div>
+  </div>
 </form>

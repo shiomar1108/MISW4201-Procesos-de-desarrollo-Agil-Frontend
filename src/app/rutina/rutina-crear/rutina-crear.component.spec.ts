@@ -34,6 +34,12 @@ describe('RutinaCrearComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('Debe Existir form Rutina', () => {
+    const debugElement =
+      fixture.debugElement.nativeElement.querySelector('#rutinaForm');
+    expect(debugElement).toBeTruthy();
+  });
+
   it('Debe Existir campo Nombre', () => {
     const debugElement =
       fixture.debugElement.nativeElement.querySelector('#nombre');
@@ -46,11 +52,11 @@ describe('RutinaCrearComponent', () => {
     expect(debugElement).toBeTruthy();
   });
 
-  it('Debe Existir Boton de Crear', () => {
+  it('Debe Existir Boton de Crear Desabilitado', () => {
     const debugElement = fixture.debugElement.query(
       By.css('button[type=submit]')
     );
-    expect(debugElement).toBeTruthy();
+    expect(debugElement.nativeElement.disabled).toBe(true);
   });
 
   it('Debe Existir Boton de Cancelar', () => {
