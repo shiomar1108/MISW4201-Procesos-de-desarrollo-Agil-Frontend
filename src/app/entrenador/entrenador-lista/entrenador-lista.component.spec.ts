@@ -51,15 +51,15 @@ describe('Entrenador-Lista-Component', () => {
     expect(debugElement).toBeTruthy();
   });
 
-  it('Debe Existir botton crear"', () => {
+  it('Debe Existir botton crear', () => {
     const debugElement =
-      fixture.debugElement.nativeElement.querySelector('button.btn-btn-warning');
+      fixture.debugElement.nativeElement.querySelector('button.btn.btn-warning');
     expect(debugElement).toBeTruthy();
   });
 
   it('Debe Existir Tabla de Entrenador"', () => {
     const debugElement =
-      fixture.debugElement.nativeElement.querySelector('table#enrenadorTable');
+      fixture.debugElement.nativeElement.querySelector('table#entrenadorTable');
     expect(debugElement).toBeTruthy();
   });
 
