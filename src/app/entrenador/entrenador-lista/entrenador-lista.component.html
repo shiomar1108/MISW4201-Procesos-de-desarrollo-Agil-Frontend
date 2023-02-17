@@ -3,17 +3,40 @@
   <div class="col col-4" id="entrenadorList">
     <div class="card" style="width: 100%;">
       <div class="card-header" id="entrenadorTitle">
-        Entrenadores <button type="button" class="btn btn-warning"><i
-            class="bi bi-plus-circle"></i></button>
+        <div class="row">
+          <div class="col col-9">
+            <h3>Entrenadores</h3>
+          </div>
+          <div class="col col-3 text-center"><button type="button" class="btn btn-warning" (click)="entrenadorCrear()"><i
+                class="bi bi-plus-circle"></i></button></div>
+        </div>
       </div>
       <table class="table" border="1" id="entrenadorTable">
         <tbody>
-
+          <tr *ngFor="let entrenador of entrenadores">
+            <td>{{entrenador.nombre}} {{entrenador.apellido}}</td>
+            <td>
+              <button type="button" class="btn btn-warning" (click)="entrenadorDetalles(entrenador.id)"><i
+                  class="bi bi-eye"></i></button>&nbsp;
+              <button type="button" class="btn btn-primary" (click)="entrenadorEditar(entrenador.id)"><i
+                  class="bi bi-pencil"></i></button>&nbsp;
+              <button type="button" class="btn btn-danger" (click)="entrenadorEliminar(entrenador.id)"><i
+                  class="bi bi-trash"></i></button>&nbsp;
+            </td>
+          </tr>
         </tbody>
       </table>
     </div>
   </div>
   <div class="col col-8" id="entrenadorDetails">
-
+    <div *ngIf="elegida">
+      <div class="card" style="width: 100%;">
+        <div class="card-body">
+          <h5 class="card-title">{{entrenadorElegido.nombre}} {{entrenadorElegido.apellido}}</h5>
+          <p class="card-text" *ngIf="entrenadorElegido">
+          </p>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
