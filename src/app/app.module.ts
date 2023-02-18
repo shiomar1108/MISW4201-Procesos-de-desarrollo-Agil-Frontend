@@ -11,6 +11,7 @@ import { PersonaModule } from './persona/persona.module';
 import { EjercicioModule} from './ejercicio/ejercicio.module';
 import { EntrenamientoModule } from './entrenamiento/entrenamiento.module';
 import { RutinaModule } from './rutina/rutina.module';
+import { EntrenadorModule } from './entrenador/entrenador.module';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { RutinaModule } from './rutina/rutina.module';
     EjercicioModule,
     RutinaModule,
     EntrenamientoModule,
+    EntrenadorModule,
     ToastrModule.forRoot({
       timeOut: 7000,
       positionClass: 'toast-bottom-right',
