@@ -7,15 +7,15 @@
           <div class="col col-9">
             <h3>Entrenadores</h3>
           </div>
-          <div class="col col-3 text-center"><button type="button" class="btn btn-warning" (click)="entrenadorCrear()"><i
-                class="bi bi-plus-circle"></i></button></div>
+          <div style="display: flex; justify-content: flex-end" class="col col-3"><button type="button"
+              class="btn btn-warning" (click)="entrenadorCrear()"><i class="bi bi-plus-circle"></i></button></div>
         </div>
       </div>
       <table class="table" border="1" id="entrenadorTable">
         <tbody>
           <tr *ngFor="let entrenador of entrenadores">
             <td>{{entrenador.nombre}} {{entrenador.apellido}}</td>
-            <td>
+            <td align="right">
               <button type="button" class="btn btn-warning" (click)="entrenadorDetalles(entrenador.id)"><i
                   class="bi bi-eye"></i></button>&nbsp;
               <button type="button" class="btn btn-primary" (click)="entrenadorEditar(entrenador.id)"><i

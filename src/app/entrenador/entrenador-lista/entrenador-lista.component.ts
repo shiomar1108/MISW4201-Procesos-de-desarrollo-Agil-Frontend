@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Persona } from 'src/app/persona/persona';
+import { EntrenadorService } from '../entrenador.service';
 
 @Component({
   selector: 'app-entrenador-lista',
@@ -16,6 +17,7 @@ export class EntrenadorListaComponent implements OnInit {
 
   constructor(
     private routerPath: Router,
+    private entrenadorService: EntrenadorService,
     private toastr: ToastrService,
   ) { }
 
@@ -28,6 +30,10 @@ export class EntrenadorListaComponent implements OnInit {
   entrenadorEliminar(id:number):void {    }
 
   ngOnInit() {
+    this.entrenadorService.darEntrenadores().subscribe((entrenadores) => {
+      this.entrenadores = entrenadores;
+    console.log(this.entrenadores);
+    })
   }
 
 }
