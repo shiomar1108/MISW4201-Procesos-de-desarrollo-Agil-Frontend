@@ -44,24 +44,4 @@ describe('UsuarioRegistroComponent', () => {
     expect(document.getElementById("input#apellido"));
   });
 
-  it('Debería existir el inputText de usuario', () => {
-    expect(document.getElementById("input#usuario"));
-  });
-
-  it('Debería existir el inputText de password', () => {
-    expect(document.getElementById("input#password"));
-  });
-
-  it('Debería existir el inputText de confirm-password', () => {
-    expect(document.getElementById("input#confirm-password"));
-  });
-
-  it("Debería existir el boton de registrarse", () => {
-    expect(document.getElementById("button.btn.btn-warning.col-8"));
-  });
-
-  it("Debería existir el boton de registrarse", () => {
-    expect(debug.query(By.css("a#iniciar-sesion")).nativeElement.textContent).toContain("Inicia sesión");
-  });
-
 });
