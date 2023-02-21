@@ -2,8 +2,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
-
 import { UsuarioRegistroComponent } from './usuario-registro.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { ToastrService, ToastrModule } from 'ngx-toastr';
+import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UsuarioService } from '../usuario.service';
 
 describe('UsuarioRegistroComponent', () => {
   let component: UsuarioRegistroComponent;
@@ -12,15 +15,19 @@ describe('UsuarioRegistroComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [UsuarioRegistroComponent]
+      imports: [HttpClientTestingModule, ToastrModule.forRoot(), ReactiveFormsModule, FormsModule],
+      declarations: [ UsuarioRegistroComponent],
+      providers: [UsuarioService, FormBuilder, ToastrService]
+
     })
-      .compileComponents();
+    .compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(UsuarioRegistroComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+    debug = fixture.debugElement;
   });
 
   it('Debería realizar el setup de las pruebas', () => {
@@ -42,6 +49,26 @@ describe('UsuarioRegistroComponent', () => {
 
   it('Debería existir el inputText de apellido', () => {
     expect(document.getElementById("input#apellido"));
+  });
+
+  it('Debería existir el inputText de usuario', () => {
+    expect(document.getElementById("input#usuario"));
+  });
+
+  it('Debería existir el inputText de password', () => {
+    expect(document.getElementById("input#password"));
+  });
+
+  it('Debería existir el inputText de confirm-password', () => {
+    expect(document.getElementById("input#confirm-password"));
+  });
+
+  it("Debería existir el boton de registrarse", () => {
+    expect(document.getElementById("button.btn.btn-warning.col-8"));
+  });
+
+  it("Debería existir el boton de registrarse", () => {
+    expect(debug.query(By.css("a#iniciar-sesion")).nativeElement.textContent).toContain("Inicia sesión");
   });
 
 });
