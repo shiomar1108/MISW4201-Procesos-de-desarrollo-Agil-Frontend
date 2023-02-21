@@ -17,7 +17,9 @@ export class UsuarioService {
     return this.http.post<any>(`${this.apiUrl}/login`, { "usuario": usuario, "contrasena": contrasena });
   }
 
-  registro(usuario: string, contrasena: string): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/signin`, { "usuario": usuario, "contrasena": contrasena })  }
+  registro(nombre: string, apellido: string, usuario: string, contrasena: string): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/signin`, { "nombre": nombre, "apellido": apellido, "usuario": usuario, "contrasena": contrasena })
+  }
 
 }
+

@@ -18,28 +18,30 @@ export class UsuarioRegistroComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     private toastrService: ToastrService
-  )
-  {
+  ) {
     this.usuarioForm = new FormGroup('')
   }
 
   ngOnInit() {
     this.usuarioForm = this.formBuilder.group({
-      usuario: ["", [Validators.required, Validators.maxLength(50)]],
+      nombre: ["", [Validators.required, Validators.maxLength(50), Validators.minLength(4)]],
+      apellido: ["", [Validators.required, Validators.maxLength(50), Validators.minLength(4)]],
+      usuario: ["", [Validators.required, Validators.maxLength(50), Validators.minLength(4)]],
       password: ["", [Validators.required, Validators.maxLength(50), Validators.minLength(4)]],
       confirmPassword: ["", [Validators.required, Validators.maxLength(50), Validators.minLength(4)]]
     });
   }
 
   registrarUsuario() {
-    this.usuarioService.registro(this.usuarioForm.get('usuario')?.value, this.usuarioForm.get('password')?.value)
+    this.usuarioService.registro(this.usuarioForm.get('nombre')?.value,
+      this.usuarioForm.get('apellido')?.value,
+      this.usuarioForm.get('usuario')?.value,
+      this.usuarioForm.get('password')?.value)
       .subscribe(res => {
         this.router.navigate([`/`])
       },
         error => {
-          this.toastrService.error("Error en el registro. Verifique que el usuario no se encuentre ya registrado", "Error", {closeButton: true});
+          this.toastrService.error("Error en el registro. Verifique que el usuario no se encuentre ya registrado", "Error", { closeButton: true });
         })
   }
-
-
 }
