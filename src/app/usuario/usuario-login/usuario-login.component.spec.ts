@@ -2,8 +2,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
-
+import { UsuarioService } from '../usuario.service';
+import { ToastrService, ToastrModule } from 'ngx-toastr';
 import { UsuarioLoginComponent } from './usuario-login.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('UsuarioLoginComponent', () => {
   let component: UsuarioLoginComponent;
@@ -11,9 +13,11 @@ describe('UsuarioLoginComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ UsuarioLoginComponent ]
+      imports: [HttpClientTestingModule, ToastrModule.forRoot()],
+      declarations: [UsuarioLoginComponent],
+      providers: [UsuarioService, ToastrService]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

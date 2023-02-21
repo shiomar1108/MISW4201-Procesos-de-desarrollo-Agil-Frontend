@@ -2,25 +2,61 @@
   <div class="row align-items-center">
     <div class="col-xs-10 col-lg-5 card px-2 ">
       <div class="card-body text-center">
-        <h2 class="my-2">En Forma</h2>
+        <h2 class="my-2" id="application-name">En Forma</h2>
         <p class="my-2">Para estar bien de salud</p>
       </div>
     </div>
-
     <div class="col-xs-10 col-lg-5 container">
       <div class="row">
-
         <div class="my-2 row">
           <h1 class="text-center">Registro</h1>
         </div>
-
-        <form [formGroup]="this.usuarioForm" (ngSubmit)="registrarUsuario()">
-
+        <!--Formulario de cración de usuario-->
+        <form [formGroup]="this.usuarioForm" (ngSubmit)="registrarUsuario()" id="createForm">
+          <!--Input text del nombre-->
+          <div class="form-group">
+            <div class="mb-3 row">
+              <label for="nombre" class="col-lg-3 col-form-label">Nombre</label>
+              <div class="col-lg-9  ">
+                <input formControlName="nombre" type="text" class="form-control" placeholder="Nombre" id="nombre">
+              </div>
+            </div>
+            <div class="alert alert-danger"
+              *ngIf="usuarioForm.get('nombre')?.hasError('required') && usuarioForm.get('nombre')?.touched">
+              Debe ingresar un nombre para registrarse
+            </div>
+            <div class="alert alert-danger my-3" *ngIf="usuarioForm.get('nombre')?.hasError('maxlength')">
+              El nombre no debe exceder los 50 carácteres
+            </div>
+            <div class="alert alert-danger my-3" *ngIf="usuarioForm.get('nombre')?.hasError('minlength')">
+              El nombre debe tener más de 4 carácteres
+            </div>
+          </div>
+          <!--Input text del apellido-->
+          <div class="form-group">
+            <div class="mb-3 row">
+              <label for="apellido" class="col-lg-3 col-form-label">Apellido</label>
+              <div class="col-lg-9  ">
+                <input formControlName="apellido" type="text" class="form-control" placeholder="Apellido" id="apellido">
+              </div>
+            </div>
+            <div class="alert alert-danger my-3"
+              *ngIf="usuarioForm.get('apellido')?.hasError('required') && usuarioForm.get('apellido')?.touched">
+              Debe ingresar un apellido para registrarse
+            </div>
+            <div class="alert alert-danger my-3" *ngIf="usuarioForm.get('apellido')?.hasError('maxlength')">
+              El apellido no debe exceder los 50 carácteres
+            </div>
+            <div class="alert alert-danger my-3" *ngIf="usuarioForm.get('apellido')?.hasError('minlength')">
+              El apellido debe tener más de 4 carácteres
+            </div>
+          </div>
+          <!--Input text del usuario-->
           <div class="form-group">
             <div class="mb-3 row">
               <label for="usuario" class="col-lg-3 col-form-label">Usuario</label>
               <div class="col-lg-9  ">
-                <input formControlName="usuario" type="text" class="form-control" placeholder="Usuario">
+                <input formControlName="usuario" type="text" class="form-control" placeholder="Usuario" id="usuario">
               </div>
             </div>
             <div class="alert alert-danger my-3"
@@ -30,14 +66,17 @@
             <div class="alert alert-danger my-3" *ngIf="usuarioForm.get('usuario')?.hasError('maxlength')">
               El usuario no debe exceder los 50 carácteres
             </div>
-
+            <div class="alert alert-danger my-3" *ngIf="usuarioForm.get('apellido')?.hasError('minlength')">
+              El usuario debe tener más de 4 carácteres
+            </div>
           </div>
-
+          <!--Input text de contraseña-->
           <div class="form-group">
             <div class="mb-3 row">
               <label for="password" class="col-lg-3 col-form-label">Contraseña</label>
               <div class="col-lg-9">
-                <input formControlName="password" type="password" class="form-control" placeholder="*********">
+                <input formControlName="password" type="password" class="form-control" placeholder="*********"
+                  id="password">
               </div>
             </div>
             <div class="alert alert-danger my-3"
@@ -51,12 +90,13 @@
               La contraseña debe tener más de 4 carácteres
             </div>
           </div>
-
+          <!--Input text de confirmar contraseña-->
           <div class="form-group">
             <div class="mb-3 row">
               <label for="confirmPassword" class="col-lg-3 col-form-label">Confirmar contraseña</label>
               <div class="col-lg-9">
-                <input formControlName="confirmPassword" type="password" class="form-control" placeholder="*********">
+                <input formControlName="confirmPassword" type="password" class="form-control" placeholder="*********"
+                  id="confirm-password">
               </div>
             </div>
             <div class="alert alert-danger my-3"
@@ -74,17 +114,14 @@
               Las contraseñas no coinciden
             </div>
           </div>
-
           <div class="col-12 text-center mt-3">
             <button type="submit" class="btn btn-warning col-8"
               [disabled]="!usuarioForm.valid || usuarioForm.get('confirmPassword')?.value !== usuarioForm.get('password')?.value">Registrarse</button>
           </div>
           <div class="col-12 text-center mt-2">
-            <p>¿Ya tienes cuenta? <a href="/">Inicia sesión</a></p>
+            <p>¿Ya tienes cuenta? <a href="/" id="iniciar-sesion">Inicia sesión</a></p>
           </div>
-
         </form>
-
       </div>
     </div>
   </div>
