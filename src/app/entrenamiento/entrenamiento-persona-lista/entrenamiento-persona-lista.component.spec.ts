@@ -2,8 +2,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
-
 import { EntrenamientoPersonaListaComponent } from './entrenamiento-persona-lista.component';
+import { EntrenamientoService } from '../entrenamiento.service';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { ToastrService, ToastrModule } from 'ngx-toastr';
 
 describe('EntrenamientoPersonaListaComponent', () => {
   let component: EntrenamientoPersonaListaComponent;
@@ -11,9 +13,11 @@ describe('EntrenamientoPersonaListaComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EntrenamientoPersonaListaComponent ]
+      imports: [HttpClientTestingModule, ToastrModule.forRoot()],
+      declarations: [EntrenamientoPersonaListaComponent],
+      providers: [EntrenamientoService, ToastrService]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
