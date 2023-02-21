@@ -2,8 +2,13 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
-
 import { PersonaReporteComponent } from './persona-reporte.component';
+import { PersonaService } from '../persona.service';
+import { ToastrService, ToastrModule } from 'ngx-toastr';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { EncabezadoAppModule } from '../../encabezado-app/encabezado-app.module';
+import { EncabezadoComponent } from '../../encabezado-app/encabezado/encabezado.component';
 
 describe('PersonaReporteComponent', () => {
   let component: PersonaReporteComponent;
@@ -11,9 +16,11 @@ describe('PersonaReporteComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PersonaReporteComponent ]
+      imports: [HttpClientTestingModule, EncabezadoAppModule, ToastrModule.forRoot(), RouterTestingModule],
+      declarations: [PersonaReporteComponent, EncabezadoComponent],
+      providers: [PersonaService, ToastrService]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

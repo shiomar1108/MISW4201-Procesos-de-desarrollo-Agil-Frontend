@@ -2,8 +2,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { EntrenadorService } from '../entrenador.service'
+import { ToastrService, ToastrModule } from 'ngx-toastr';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ToastrModule } from 'ngx-toastr';
 import { EncabezadoAppModule } from 'src/app/encabezado-app/encabezado-app.module';
 import { EntrenadorListaComponent } from './entrenador-lista.component';
 
@@ -14,12 +16,14 @@ describe('Entrenador-Lista-Component', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
+        HttpClientTestingModule,
         FormsModule,
         ReactiveFormsModule,
         EncabezadoAppModule,
         ToastrModule.forRoot(),
       ],
       declarations: [EntrenadorListaComponent],
+      providers: [EntrenadorService, ToastrService]
     }).compileComponents();
   }));
 
