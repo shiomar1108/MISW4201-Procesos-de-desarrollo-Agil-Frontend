@@ -14,6 +14,7 @@ export class UsuarioLoginComponent implements OnInit {
 
   error: string = "";
   helper = new JwtHelperService();
+  rol?:string;
 
   constructor(
     private usuarioService: UsuarioService,
@@ -35,8 +36,17 @@ export class UsuarioLoginComponent implements OnInit {
         sessionStorage.setItem('token', res.token);
         sessionStorage.setItem('idUsuario', res.id);
         sessionStorage.setItem('usuario', usuario);
+        sessionStorage.setItem('rol', res.rol);
+        this.rol = res.rol
         this.toastrService.success("Login ok", "Información", {closeButton: true});
-        this.router.navigate([`/persona`])
+        if (this.rol == "ENT"){
+          this.router.navigate([`/persona`])
+        } else if(this.rol == "ADM"){
+          this.router.navigate([`/entrenador`])
+        }else {
+          // Pantalla del cliente
+        }
+
       },
         error => {
           this.error = "Usuario o contraseña incorrectos";
