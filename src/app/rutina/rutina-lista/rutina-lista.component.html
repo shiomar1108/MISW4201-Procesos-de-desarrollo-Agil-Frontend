@@ -1,3 +1,49 @@
-<p>
-  rutina-lista works!
-</p>
+<app-encabezado></app-encabezado>
+<div class="row">
+  <div class="col col-4" id="rutinaList">
+    <div class="card" style="width: 100%;">
+      <div class="card-header" id="rutinaTitle">
+        <div class="row">
+          <div class="col col-9">
+            <h3 id="title">Rutinas</h3>
+          </div>
+          <div style="display: flex; justify-content: flex-end" class="col col-3"><button type="button"
+              class="btn btn-warning" (click)="rutinaCrear()" id="btnCrear"><i class="bi bi-plus-circle"></i></button>
+          </div>
+        </div>
+      </div>
+      <!--Tabla que lista las rutinas-->
+      <table class="table" border="1" id="rutinasTable">
+        <tbody>
+          <tr *ngFor="let rutina of rutinas">
+            <td id="rutinaName">{{rutina.nombre}}</td>
+            <td align="right">
+              <button type="button" class="btn btn-warning" (click)="darRutina(rutina)"><i
+                  class="bi bi-eye"></i></button>&nbsp;
+              <button type="button" class="btn btn-primary"><i class="bi bi-pencil"></i></button>&nbsp;
+              <button type="button" class="btn btn-danger"><i class="bi bi-trash"></i></button>&nbsp;
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <!--Detalle de la rutina seleccionada-->
+  <div class="col col-8" id="rutinaDetails">
+    <div *ngIf="esRutinaSeleccionada">
+      <div class="card" style="width: 100%;">
+        <div class="card-body">
+          <div class="row">
+            <p class="col-4 card-text fw-bold">Nombre Rutina:</p>
+            <p class="col-8 card-text">{{rutinaSeleccionada.nombre}}</p>
+          </div>
+          <div class="row">
+            <p class="col-4 card-text fw-bold">Descripción:</p>
+            <p class="col-8 card-text">{{rutinaSeleccionada.descripcion}}</p>
+          </div>
+          <button type="submit" class="btn btn-primary">Agregar ejercicio</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
