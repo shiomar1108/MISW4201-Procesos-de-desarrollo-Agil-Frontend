@@ -56,4 +56,14 @@ describe('RutinaListaComponent', () => {
     expect(document.getElementById("rutinasTable"));
   });
 
+  it("Deberia visualizarse en el listado de rutinas mas de 1 rutinas", () => {
+    expect(debug.query(By.css("tbody tr")).childNodes.length).toBeGreaterThan(1);
+  });
+
+  it("Deberia existir por cada rutina los botones de detalle, editar y eliminar", () => {
+    expect(debug.query(By.css("button.btn.btn-warning")).childNodes.length).toBeGreaterThan(0);
+    expect(debug.query(By.css("button.btn.btn-primary")).childNodes.length).toBeGreaterThan(0);
+    expect(debug.query(By.css("button.btn.btn-danger")).childNodes.length).toBeGreaterThan(0);
+  });
+
 });
