@@ -45,7 +45,7 @@ describe('RutinaListaComponent', () => {
   });
 
   it('Debe existir la sección listado de rutinas', () => {
-    expect(document.getElementById("rutinaList"));
+    expect(document.getElementById("rutinaList")).toBeTruthy();;
   });
 
   it('Debe existir el titulo rutinas ', () => {
@@ -53,7 +53,7 @@ describe('RutinaListaComponent', () => {
   });
 
   it("Deberia existir la tabla rutinas", () => {
-    expect(document.getElementById("rutinasTable"));
+    expect(document.getElementById("rutinasTable")).toBeTruthy();;
   });
 
   it("Deberia visualizarse en el listado de rutinas mas de 1 rutinas", () => {
@@ -64,6 +64,19 @@ describe('RutinaListaComponent', () => {
     expect(debug.query(By.css("button.btn.btn-warning")).childNodes.length).toBeGreaterThan(0);
     expect(debug.query(By.css("button.btn.btn-primary")).childNodes.length).toBeGreaterThan(0);
     expect(debug.query(By.css("button.btn.btn-danger")).childNodes.length).toBeGreaterThan(0);
+  });
+
+  it("Deberia existir un modal para agregar ejercicios a la rutina", () => {
+    expect(debug.query(By.css("div#modalEjercicio")).childNodes.length).toBeGreaterThan(0);
+  });
+
+  it("Deberia existir un con menu para agregar ejercicios a la rutina", () => {
+    expect(debug.query(By.css("select#selectEjercicio")).childNodes.length).toBeGreaterThan(0);
+  });
+
+  it("Deberia existir un con dos botones para agregar ejercicios a la rutina", () => {
+    expect(debug.query(By.css("button#botonagregar")).childNodes.length).toBeGreaterThan(0);
+    expect(debug.query(By.css("button#botonCancelar")).childNodes.length).toBeGreaterThan(0);
   });
 
 });
