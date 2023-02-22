@@ -30,8 +30,7 @@ export class RutinaCrearComponent implements OnInit {
 
   cancelarRutina(): void {
     this.rutinaForm.reset();
-    /* Regresar a pagina principal */
-    this.routerPath.navigate(['']);
+    this.routerPath.navigate(['/rutinas']);
   }
 
 }

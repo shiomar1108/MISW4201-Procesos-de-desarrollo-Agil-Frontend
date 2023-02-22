@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class EncabezadoComponent implements OnInit {
 
   userLogin: string = sessionStorage.getItem('usuario');
+  userRol: string = sessionStorage.getItem('rol');
 
   constructor() { }
 
