@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Rutina } from '../rutina';
 import { RutinaService } from '../rutina.service';
+import { Ejercicio } from 'src/app/ejercicio/ejercicio';
+
 
 @Component({
   selector: 'app-rutina-lista',
@@ -13,6 +15,8 @@ export class RutinaListaComponent implements OnInit {
   rutinas: Array<Rutina>;
   esRutinaSeleccionada: Boolean = false;
   rutinaSeleccionada: Rutina;
+  ejercicios: Array<Ejercicio>;
+  displayStyle = "none";
 
   constructor(
     private routerPath: Router,
@@ -29,8 +33,16 @@ export class RutinaListaComponent implements OnInit {
     console.log(this.rutinaSeleccionada)
   };
 
+  openPopup() {
+    this.displayStyle = "block";
+  }
+  closePopup() {
+    this.displayStyle = "none";
+  }
+
   ngOnInit() {
     this.rutinas = this.rutinaService.darRutinas()
+    this.ejercicios = this.rutinaService.darEjercicios()
   }
 
 }

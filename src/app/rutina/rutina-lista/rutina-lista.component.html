@@ -41,9 +41,31 @@
             <p class="col-4 card-text fw-bold">Descripción:</p>
             <p class="col-8 card-text">{{rutinaSeleccionada.descripcion}}</p>
           </div>
-          <button type="submit" class="btn btn-primary">Agregar ejercicio</button>
+          <button type="submit" class="btn btn-primary" (click)="openPopup()">Agregar ejercicio</button>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+  <!--PopUp de agregar ejercicios a la rutina-->
+<div class="modal" role="dialog" id="modalEjercicio" [ngStyle]="{'display':displayStyle}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Agregar Ejercicio</h4>
+      </div>
+      <div class="modal-body">
+        <p>Ejercicios Disponibles</p>
+        <select id="selectEjercicio">
+          <option *ngFor="let ejercicio of ejercicios">{{ejercicio.nombre}}</option>
+        </select>
+      </div>
+      <div class="modal-footer justify-content-between">
+        <button id="botonagregar" type="submit" class="btn btn-primary">Agregar</button>
+        <button id="botonCancelar" type="button" class="btn btn-danger" (click)="closePopup()">
+          Cancelar
+        </button>
+      </div>
+    </div>
+  </div>
