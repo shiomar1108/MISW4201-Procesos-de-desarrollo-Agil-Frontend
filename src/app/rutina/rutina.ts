@@ -7,10 +7,10 @@ export class Rutina {
   ejercicios: Array<Ejercicio>;
 
 
-  public constructor(id: number, nombre: string, descripcion: string) {
+  public constructor(id: number, nombre: string, descripcion: string, ejercicios:Array<Ejercicio>) {
     this.id = id;
     this.nombre = nombre;
     this.descripcion = descripcion;
-    this.ejercicios = [];
+    this.ejercicios = ejercicios;
   }
 }

@@ -30,7 +30,6 @@ export class RutinaListaComponent implements OnInit {
   darRutina(rutina: Rutina): void {
     this.esRutinaSeleccionada = true;
     this.rutinaSeleccionada = rutina;
-    console.log(this.rutinaSeleccionada)
   };
 
   openPopup() {
@@ -41,7 +40,9 @@ export class RutinaListaComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.rutinas = this.rutinaService.darRutinas()
+    this.rutinaService.darRutinas().subscribe((rutinas) => {
+      this.rutinas = rutinas;
+    })
     this.ejercicios = this.rutinaService.darEjercicios()
   }
 

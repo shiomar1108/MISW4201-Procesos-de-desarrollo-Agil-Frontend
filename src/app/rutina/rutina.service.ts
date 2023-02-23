@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
 import { Rutina } from './rutina';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment'
@@ -16,11 +17,11 @@ export class RutinaService {
 
   constructor(private http: HttpClient) { }
 
-  darRutinas(): Array<Rutina> {
-    this.rutinas = [];
-    this.rutinas.push(new Rutina(1, 'Rutina ejemplo 1', 'Descripcion de la rutina de ejemplo 1'));
-    this.rutinas.push(new Rutina(2, 'Rutina ejemplo 2', 'Descripcion de la rutina de ejemplo 2'));
-    return this.rutinas;
+  darRutinas(): Observable<Rutina[]> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+    })
+    return this.http.get<Rutina[]>(`${this.apiUrl}/rutinas`, { headers: headers })
   }
 
   darEjercicios(): Array<Ejercicio> {
