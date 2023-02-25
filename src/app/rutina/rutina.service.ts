@@ -31,11 +31,11 @@ export class RutinaService {
     return this.http.post<Rutina[]>(`${this.apiUrl}/rutinas`, rutina, { headers: headers })
   }
 
-  darEjercicios(): Observable<Ejercicio[]> {
+  darEjercicios(id_rutina: number): Observable<Ejercicio[]> {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${sessionStorage.getItem('token')}`
     })
-    return this.http.get<Ejercicio[]>(`${this.apiUrl}/ejercicios`, { headers: headers })
+    return this.http.get<Ejercicio[]>(`${this.apiUrl}/rutina/${id_rutina}/diferente`, { headers: headers })
   }
 
   asignarEJercicio(idRutina: number, idEjercicio: number): Observable<Rutina>{
