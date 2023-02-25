@@ -2,6 +2,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
+import { RouterTestingModule } from "@angular/router/testing";
+import { HttpClientModule } from '@angular/common/http';
 
 import { EncabezadoComponent } from './encabezado.component';
 
@@ -25,4 +27,18 @@ describe('EncabezadoComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('deberia existir un menu opciones', () => {
+    expect(document.getElementById("opciones"));
+  });
+
+  it('deberia existir un menu user login', () => {
+    expect(document.getElementById("userLogin"));
+  });
+
+  it('deberia existir un  login', () => {
+    expect(document.getElementById("login"));
+  });
+
+
 });

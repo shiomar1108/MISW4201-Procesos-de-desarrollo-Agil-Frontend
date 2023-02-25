@@ -1,0 +1,101 @@
+<app-encabezado></app-encabezado>
+<div class="row">
+  <div class="col col-4" id="rutinaList">
+    <div class="card" style="width: 100%;">
+      <div class="card-header" id="rutinaTitle">
+        <div class="row">
+          <div class="col col-9">
+            <h3 id="title">Rutinas</h3>
+          </div>
+          <div style="display: flex; justify-content: flex-end" class="col col-3"><button type="button"
+              class="btn btn-warning" (click)="rutinaCrear()" id="btnCrear"><i class="bi bi-plus-circle"></i></button>
+          </div>
+        </div>
+      </div>
+      <!--Tabla que lista las rutinas-->
+      <table class="table" border="1" id="rutinasTable">
+        <tbody>
+          <tr *ngFor="let rutina of rutinas">
+            <td id="rutinaName">{{rutina.nombre}}</td>
+            <td align="right">
+              <button type="button" class="btn btn-warning" (click)="darRutina(rutina)"><i
+                  class="bi bi-eye"></i></button>&nbsp;
+              <button type="button" class="btn btn-primary"><i class="bi bi-pencil"></i></button>&nbsp;
+              <button type="button" class="btn btn-danger"><i class="bi bi-trash"></i></button>&nbsp;
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <!--Detalle de la rutina seleccionada-->
+  <div class="col col-8" id="rutinaDetails">
+    <div *ngIf="esRutinaSeleccionada">
+      <div class="card" style="width: 100%;">
+        <div class="card-body">
+          <!-- Listado de ejercicios asociados a la rutina -->
+          <div class="container">
+            <div class="row">
+              <p class="col-4 card-text fw-bold">Nombre Rutina:</p>
+              <p class="col-8 card-text">{{rutinaSeleccionada.nombre}}</p>
+            </div>
+            <div class="row">
+              <p class="col-4 card-text fw-bold">Descripción:</p>
+              <p class="col-8 card-text">{{rutinaSeleccionada.descripcion}}</p>
+            </div>
+          </div>
+          <div class="card" style="width: 100%;">
+            <div class="card-header" id="ejerciciosTitle">
+              <div class="row">
+                <div class="col col-9">
+                  <p class="col-4 card-text fw-bold">Ejercicios de la Rutina</p>
+                </div>
+                <div style="display: flex; justify-content: flex-end" class="col col-3" (click)="openPopup()"><button
+                    type="button" class="btn btn-warning" id="btnAgregarEjericios"><i
+                      class="bi bi-plus-circle"></i></button>
+                </div>
+              </div>
+            </div>
+            <!--Tabla que lista las rutinas-->
+            <table class="table" border="1" id="ejerciciosTable" *ngIf="rutinaSeleccionada.ejercicios.length > 0">
+              <tbody>
+                <tr *ngFor="let ejercicio of rutinaSeleccionada.ejercicios">
+                  <td id="rutinaName">{{ejercicio.nombre}}</td>
+                  <td id="rutinaName">{{ejercicio.descripcion}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--PopUp de agregar ejercicios a la rutina-->
+<div class="modal" role="dialog" id="modalEjercicio" [ngStyle]="{'display':displayStyle}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Agregar Ejercicio</h4>
+      </div>
+      <div class="modal-body">
+        <p class="card-text fw-bold">Ejercicios Disponibles</p>
+        <div class="row">
+          <div class="container">
+            <select id="selectEjercicio" class="form-control" name="ejercicio" [(ngModel)]="ejercicioSeleccionado" [ngModelOptions]="{standalone: true}">
+              <option *ngFor="let ejercicio of ejercicios" [ngValue]="ejercicio">
+                {{ ejercicio.nombre }}
+              </option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer justify-content-between">
+        <button id="botonagregar" type="submit" class="btn btn-primary" (click)="asignarEjercicio()">Agregar</button>
+        <button id="botonCancelar" type="button" class="btn btn-danger" (click)="closePopup()">
+          Cancelar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
