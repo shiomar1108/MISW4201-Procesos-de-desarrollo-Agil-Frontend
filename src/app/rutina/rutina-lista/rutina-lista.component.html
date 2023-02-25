@@ -82,14 +82,16 @@
         <p class="card-text fw-bold">Ejercicios Disponibles</p>
         <div class="row">
           <div class="container">
-            <select id="selectEjercicio" class="form-select">
-              <option *ngFor="let ejercicio of ejercicios">{{ejercicio.nombre}}</option>
+            <select id="selectEjercicio" class="form-control" name="ejercicio" [(ngModel)]="ejercicioSeleccionado" [ngModelOptions]="{standalone: true}">
+              <option *ngFor="let ejercicio of ejercicios" [ngValue]="ejercicio">
+                {{ ejercicio.nombre }}
+              </option>
             </select>
           </div>
         </div>
       </div>
       <div class="modal-footer justify-content-between">
-        <button id="botonagregar" type="submit" class="btn btn-primary">Agregar</button>
+        <button id="botonagregar" type="submit" class="btn btn-primary" (click)="asignarEjercicio()">Agregar</button>
         <button id="botonCancelar" type="button" class="btn btn-danger" (click)="closePopup()">
           Cancelar
         </button>

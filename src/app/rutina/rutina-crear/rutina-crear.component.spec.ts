@@ -6,6 +6,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RutinaCrearComponent } from './rutina-crear.component';
 import { ToastrModule } from 'ngx-toastr';
 import { EncabezadoAppModule } from 'src/app/encabezado-app/encabezado-app.module';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { RutinaService } from '../rutina.service';
+
 
 
 describe('RutinaCrearComponent', () => {
@@ -18,9 +21,11 @@ describe('RutinaCrearComponent', () => {
         FormsModule,
         ReactiveFormsModule,
         EncabezadoAppModule,
+        HttpClientTestingModule,
         ToastrModule.forRoot()
       ],
       declarations: [RutinaCrearComponent],
+      providers: [RutinaService]
     }).compileComponents();
   }));
 

@@ -24,11 +24,25 @@ export class RutinaService {
     return this.http.get<Rutina[]>(`${this.apiUrl}/rutinas`, { headers: headers })
   }
 
-  darEjercicios(): Array<Ejercicio> {
-    this.ejercicios = [];
-    this.ejercicios.push(new Ejercicio(1,'Press de Pecho', 'Press de Pecho', '', 20));
-    this.ejercicios.push(new Ejercicio(1,'Press de Pierna', 'Press de Pierna', '', 20));
-    return this.ejercicios;
+  crearRutina(rutina: Rutina): Observable<Rutina[]> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+    })
+    return this.http.post<Rutina[]>(`${this.apiUrl}/rutinas`, rutina, { headers: headers })
+  }
+
+  darEjercicios(id_rutina: number): Observable<Ejercicio[]> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+    })
+    return this.http.get<Ejercicio[]>(`${this.apiUrl}/rutina/${id_rutina}/diferente`, { headers: headers })
+  }
+
+  asignarEJercicio(idRutina: number, idEjercicio: number): Observable<Rutina>{
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+    })
+    return this.http.put<Rutina>(`${this.apiUrl}/rutina/${idRutina}/ejercicio/${idEjercicio}`, null, { headers: headers })
   }
 
 }

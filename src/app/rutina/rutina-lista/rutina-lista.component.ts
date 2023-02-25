@@ -17,6 +17,7 @@ export class RutinaListaComponent implements OnInit {
   rutinaSeleccionada: Rutina;
   ejercicios: Array<Ejercicio>;
   displayStyle = "none";
+  ejercicioSeleccionado: Ejercicio;
 
   constructor(
     private routerPath: Router,
@@ -32,8 +33,19 @@ export class RutinaListaComponent implements OnInit {
     this.rutinaSeleccionada = rutina;
   };
 
+  asignarEjercicio(): void{
+    this.rutinaService.asignarEJercicio(this.rutinaSeleccionada.id,this.ejercicioSeleccionado.id).subscribe((rutina) => {
+      this.rutinaSeleccionada = rutina;
+      this.displayStyle = "none";
+    })
+  }
+
   openPopup() {
     this.displayStyle = "block";
+    //Pedir ejercicios que no esten asociados
+    this.rutinaService.darEjercicios(this.rutinaSeleccionada.id).subscribe((ejercicios) => {
+      this.ejercicios = ejercicios;
+    })
   }
   closePopup() {
     this.displayStyle = "none";
@@ -43,7 +55,6 @@ export class RutinaListaComponent implements OnInit {
     this.rutinaService.darRutinas().subscribe((rutinas) => {
       this.rutinas = rutinas;
     })
-    this.ejercicios = this.rutinaService.darEjercicios()
   }
 
 }

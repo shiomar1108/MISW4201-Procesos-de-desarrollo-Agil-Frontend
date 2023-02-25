@@ -9,22 +9,30 @@ import { Rutina } from '../rutina';
 import { EncabezadoAppModule } from 'src/app/encabezado-app/encabezado-app.module';
 import { EncabezadoComponent } from 'src/app/encabezado-app/encabezado/encabezado.component';
 import { RutinaService } from '../rutina.service';
+import { Ejercicio } from 'src/app/ejercicio/ejercicio';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 
 describe('RutinaListaComponent', () => {
   let component: RutinaListaComponent;
   let fixture: ComponentFixture<RutinaListaComponent>;
   let debug: DebugElement;
 
+  //Listado de Ejercicio
+  let ejercicios: Array<Ejercicio> = [];
+  for (let index = 0; index < 4; index++) {
+    ejercicios.push(new Ejercicio(index, `Ejercicio ${faker.address.cityName()}`, `Ejercicio encargada de ${faker.lorem.sentence()}`, faker.internet.url(), faker.datatype.number()))
+  }
 
   // Listado de rutinas
   let rutinas: Array<Rutina> = [];
   for (let index = 0; index < 10; index++) {
-    rutinas.push(new Rutina(index, `Rutina ${faker.address.cityName()}`, `Rutina encargada de ${faker.lorem.sentence()}`));
+    rutinas.push(new Rutina(index, `Rutina ${faker.address.cityName()}`, `Rutina encargada de ${faker.lorem.sentence()}`, ejercicios));
   }
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, EncabezadoAppModule],
+      imports: [HttpClientTestingModule, EncabezadoAppModule, FormsModule],
       declarations: [RutinaListaComponent, EncabezadoComponent],
       providers: [RutinaService]
     })
