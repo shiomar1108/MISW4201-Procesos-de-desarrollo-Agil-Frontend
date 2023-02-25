@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from '@angular/router';
 import {ToastrModule, ToastrService} from 'ngx-toastr';
 import { Rutina } from '../rutina';
+import { RutinaService } from '../rutina.service';
 
 @Component({
   selector: 'app-rutina-crear',
@@ -16,7 +17,8 @@ export class RutinaCrearComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private routerPath: Router,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private rutinaService: RutinaService
   ) { }
 
   ngOnInit() {
@@ -26,7 +28,24 @@ export class RutinaCrearComponent implements OnInit {
     });
   }
 
-  crearRutina(rutina: Rutina): void { }
+  crearRutina(rutina: Rutina): void {
+    this.rutinaService.crearRutina(rutina).subscribe((rutina) => {
+      this.toastr.success("Confirmation", "Rutina creada")
+      this.rutinaForm.reset();
+      this.routerPath.navigate(['/rutinas']);
+      },
+    error => {
+      if (error.statusText === "UNAUTHORIZED") {
+        this.toastr.error("Error","Su sesión ha caducado, por favor vuelva a iniciar sesión.")
+      }
+      else if (error.statusText === "UNPROCESSABLE ENTITY") {
+        this.toastr.error("Error","No hemos podido identificarlo, por favor vuelva a iniciar sesión.")
+      }
+      else {
+        this.toastr.error("Error","Ha ocurrido un error. " + error.message)
+      }
+    })
+  }
 
   cancelarRutina(): void {
     this.rutinaForm.reset();
