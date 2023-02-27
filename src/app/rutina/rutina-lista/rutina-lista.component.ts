@@ -36,6 +36,7 @@ export class RutinaListaComponent implements OnInit {
   asignarEjercicio(): void{
     this.rutinaService.asignarEJercicio(this.rutinaSeleccionada.id,this.ejercicioSeleccionado.id).subscribe((rutina) => {
       this.rutinaSeleccionada = rutina;
+      window.location.reload();
       this.displayStyle = "none";
     })
   }
