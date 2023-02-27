@@ -1,0 +1,26 @@
+h3 {
+  text-align: center;
+  align-items : center;
+  height: 100px;
+  font-size: 50px;
+}
+
+#buttons{
+  padding: 20px;
+}
+
+label{
+  font-weight: BOLD;
+  font-size: 25px;
+}
+
+#descripcion{
+  height:200px;
+}
+
+button {
+  font-size: 20px;
+  padding: 5px;
+  min-width: 200px;
+}
+
