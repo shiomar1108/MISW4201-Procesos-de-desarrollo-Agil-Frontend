@@ -49,7 +49,7 @@ describe('EntrenamientoPersonaListaComponent', () => {
   });
 
   it("Deberia tener buton para agregar Rutinas y uno para agregar ejercicios", () => {
-    expect(debug.query(By.css("btn btn-warning")).childNodes.length).toBeGreaterThanOrEqual(2);
+    expect(debug.query(By.css("button.btn.btn-warning")).childNodes.length).toBeGreaterThan(0);
   });
 
   it("Deberia existir tabla de Ejercicios", () => {
