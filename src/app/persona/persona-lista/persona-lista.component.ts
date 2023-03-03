@@ -38,7 +38,6 @@ export class PersonaListaComponent implements OnInit {
       this.entrenamientos = entrenamientos;
     });
     this.entrenamientoService.darEntrenamientosRutina(persona.id).subscribe((entrenamientosRutina) => {
-      console.log(entrenamientosRutina)
       this.entrenamientosRutina = entrenamientosRutina;
     })
   }
