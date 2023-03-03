@@ -43,7 +43,6 @@ export class RutinaListaComponent implements OnInit {
 
   openPopup() {
     this.displayStyle = "block";
-    //Pedir ejercicios que no esten asociados
     this.rutinaService.darEjercicios(this.rutinaSeleccionada.id).subscribe((ejercicios) => {
       this.ejercicios = ejercicios;
     })

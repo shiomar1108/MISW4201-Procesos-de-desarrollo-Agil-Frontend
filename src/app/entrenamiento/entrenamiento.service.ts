@@ -40,6 +40,14 @@ export class EntrenamientoService {
     return this.http.post<Entrenamiento>(`${this.apiUrl}/entrenamientos/${idPersona}`, entrenamiento, { headers: headers })
   }
 
+  crearEntrenRutina(entrenamiento: Entrenamiento, idPersona: number): Observable<Entrenamiento> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+    });
+    //Fix API
+    return this.http.post<Entrenamiento>(`${this.apiUrl}/entrenamientos/${idPersona}`, entrenamiento, { headers: headers })
+  }
+
   editarEntrenamiento(entrenamiento: Entrenamiento): Observable<Entrenamiento> {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${sessionStorage.getItem('token')}`
