@@ -1,5 +1,6 @@
 import { Persona } from './../persona/persona';
 import { Ejercicio } from './../ejercicio/ejercicio';
+import { Rutina } from '../rutina/rutina';
 export class Entrenamiento {
     id: number;
     ejercicio: Ejercicio;
@@ -25,15 +26,17 @@ export class EntrenamientoRutina {
   persona: Persona;
   tiempoTotal: string;
   repeticionesTotales: number;
+  rutina: Rutina;
   fecha: Date;
 
-  public constructor(id: number, entrenamientos:Array<Entrenamiento>, persona: Persona, fecha: Date, tiempoTotal: string, repeticionesTotales: number) {
+  public constructor(id: number, entrenamientos:Array<Entrenamiento>, persona: Persona, fecha: Date, tiempoTotal: string, repeticionesTotales: number, rutina: Rutina) {
     this.id = id;
     this.entrenamientos = entrenamientos;
     this.persona = persona;
     this.fecha = fecha;
     this.repeticionesTotales = repeticionesTotales;
     this.tiempoTotal = tiempoTotal;
+    this.rutina = rutina;
   }
 
 }
