@@ -55,19 +55,21 @@
         <table class="table table-striped" border="1" id="rutinaTable">
           <thead>
             <tr>
-              <th>Ejercicios</th>
+              <th>Descripción</th>
               <th>Fecha</th>
               <th>Duración Total</th>
               <th>Repeticiones Totales</th>
+              <th>Ejercicios</th>
               <th>Acciones</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let entrenamientoR of entrenamientosRutina">
-              <td>{{entrenamientoR.entrenamientos.length}}</td>
+              <td>{{entrenamientoR.rutina.nombre}}</td>
               <td>{{entrenamientoR.fecha | date: 'dd/MM/yyyy'}}</td>
               <td>{{entrenamientoR.tiempoTotal}}</td>
               <td>{{entrenamientoR.repeticionesTotales| number:'1.2-2'}}</td>
+              <td>{{entrenamientoR.entrenamientos.length}}</td>
               <td>
                 <button type="button" class="btn btn-primary"><i class="bi bi-pencil"></i></button>&nbsp;
                 &nbsp;
