@@ -45,4 +45,11 @@ export class RutinaService {
     return this.http.put<Rutina>(`${this.apiUrl}/rutina/${idRutina}/ejercicio/${idEjercicio}`, null, { headers: headers })
   }
 
+  darRutinaEntrenamiento(): Observable<Rutina[]> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+    })
+    return this.http.get<Rutina[]>(`${this.apiUrl}/rutinasEntrenamiento`, { headers: headers })
+  }
+
 }
