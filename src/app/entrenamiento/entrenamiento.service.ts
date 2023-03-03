@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { environment } from '../../environments/environment'
-import { Entrenamiento } from './entrenamiento';
+import { Entrenamiento, EntrenamientoRutina } from './entrenamiento';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +18,12 @@ export class EntrenamientoService {
       'Authorization': `Bearer ${sessionStorage.getItem('token')}`
     })
     return this.http.get<Entrenamiento[]>(`${this.apiUrl}/entrenamientos/${idPersona}`, { headers: headers })
+  }
+  darEntrenamientosRutina(idPersona: number): Observable<EntrenamientoRutina[]> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+    })
+    return this.http.get<EntrenamientoRutina[]>(`${this.apiUrl}/rutinasEntrenamientoPersona/${idPersona}`, { headers: headers })
   }
 
   darEntrenamiento(id: number): Observable<Entrenamiento> {

@@ -15,6 +15,7 @@ import { EntrenamientoEditarComponent } from './entrenamiento/entrenamiento-edit
 import { RutinaCrearComponent } from './rutina/rutina-crear/rutina-crear.component';
 import { EntrenadorListaComponent } from './entrenador/entrenador-lista/entrenador-lista.component';
 import { RutinaListaComponent } from './rutina/rutina-lista/rutina-lista.component';
+import { EntrenamientoRutinaCrearComponent } from './entrenamiento/entrenamientoRutina-crear/entrenamientoRutina-crear.component';
 
 const routes: Routes = [
   { path: '', component: UsuarioLoginComponent, pathMatch: 'full' },
@@ -32,7 +33,8 @@ const routes: Routes = [
   { path: 'entrenamiento/editar/:id', component: EntrenamientoEditarComponent, pathMatch: 'full' },
   { path: 'rutina/crear', component: RutinaCrearComponent, pathMatch: 'full' },
   { path: 'rutinas', component: RutinaListaComponent, pathMatch: 'full' },
-  { path: 'entrenador', component: EntrenadorListaComponent, pathMatch: 'full' }
+  { path: 'entrenador', component: EntrenadorListaComponent, pathMatch: 'full' },
+  { path: 'entrenamientoRutina/crear/:idPersona', component: EntrenamientoRutinaCrearComponent, pathMatch: 'full' }
 ];
 
 @NgModule({
