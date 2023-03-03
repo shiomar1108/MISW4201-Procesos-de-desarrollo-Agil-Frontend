@@ -1,3 +1,11 @@
 #rutinasCard{
   padding-top: 20px;
 }
+
+td {
+  text-align: center;
+}
+
+th {
+  text-align: center;
+}

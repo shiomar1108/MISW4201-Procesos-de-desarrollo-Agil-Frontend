@@ -18,3 +18,22 @@ export class Entrenamiento {
     }
 
 }
+
+export class EntrenamientoRutina {
+  id: number;
+  entrenamientos: Array<Entrenamiento>;
+  persona: Persona;
+  tiempoTotal: string;
+  repeticionesTotales: number;
+  fecha: Date;
+
+  public constructor(id: number, entrenamientos:Array<Entrenamiento>, persona: Persona, fecha: Date, tiempoTotal: string, repeticionesTotales: number) {
+    this.id = id;
+    this.entrenamientos = entrenamientos;
+    this.persona = persona;
+    this.fecha = fecha;
+    this.repeticionesTotales = repeticionesTotales;
+    this.tiempoTotal = tiempoTotal;
+  }
+
+}
