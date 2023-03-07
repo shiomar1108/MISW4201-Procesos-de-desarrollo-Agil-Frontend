@@ -1,0 +1,102 @@
+<app-encabezado></app-encabezado>
+<h3>
+  Entrenamiento de Rutina
+</h3>
+
+<form [formGroup]="entrenamientoRutinaForm" *ngIf="entrenamientoRutinaForm"
+  (ngSubmit)="!entrenamientoRutinaForm.invalid && crearEntreRutina(entrenamientoRutinaForm.value)" id="rutinaEntrenamientoForm">
+
+  <!--Ejercicio-->
+  <div class="form-group mx-sm-3 mb-2">
+    <label for="rutina">Rutina</label>
+    <select id="rutinas" class="form-control" formControlName="rutina" (change)="selectionarRutina()"
+      [(ngModel)]="rutinaSeleccionada">
+      <option *ngFor="let rutina of rutinas" [ngValue]="rutina">
+        {{ rutina.nombre }}
+      </option>
+    </select>
+    <div class="alert alert-danger alert-dismissible fade show" *ngIf="
+      entrenamientoRutinaForm.get('rutina')!.hasError('required') &&
+      entrenamientoRutinaForm.get('rutina')!.touched
+      ">
+      Este campo debe estar diligenciado
+    </div>
+  </div>
+
+  <!--Fecha-->
+  <div class="form-group mx-sm-3 mb-2">
+    <label for="fecha">Fecha</label>
+    <input id="fecha" type="date" class="form-control" formControlName="fecha" placeholder="Fecha del ejercicio" />
+    <div class="alert alert-danger alert-dismissible fade show" *ngIf="
+      entrenamientoRutinaForm.get('fecha')!.hasError('required') &&
+        entrenamientoRutinaForm.get('fecha')!.touched
+      ">
+      Este campo debe estar diligenciado
+    </div>
+    <div class="alert alert-danger alert-dismissible fade show"
+      *ngIf="entrenamientoRutinaForm.get('fecha')!.hasError('maxlength')">
+      La fecha debe tener 10 caracteres
+    </div>
+  </div>
+
+  <!--Ejercicios-->
+  <div class="form-group mx-sm-3 mb-2">
+    <label>Ejercicios</label>
+    <table class="table table-striped" border="1" id="ejercicioTable">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Repeticiones</th>
+          <th>Tiempo</th>
+        </tr>
+      </thead>
+      <tbody *ngIf="esRutinaSeleccionada">
+        <tr *ngFor="let ejercicio of rutinaSeleccionada.ejercicios">
+          <td>{{ejercicio.nombre}}</td>
+          <td><input novalidate id="repeticiones" class="form-control" formControlName="repeticiones"
+              placeholder="Repeticiones" />
+            <div class="alert alert-danger alert-dismissible fade show" *ngIf="
+              entrenamientoRutinaForm.get('repeticiones')!.hasError('required') &&
+              entrenamientoRutinaForm.get('repeticiones')!.touched
+              ">
+              Este es un campo obligatorio
+            </div>
+          </td>
+          <td>
+            <input novalidate id="tiempo" class="form-control" formControlName="tiempo" placeholder="Tiempo" />
+            <div class="alert alert-danger alert-dismissible fade show" *ngIf="
+            entrenamientoRutinaForm.get('tiempo')!.hasError('required') &&
+            entrenamientoRutinaForm.get('tiempo')!.touched
+      ">
+              El campo no puede estar vacío
+            </div>
+            <div class="alert alert-danger alert-dismissible fade show"
+              *ngIf="entrenamientoRutinaForm.get('tiempo')!.hasError('minlength')">
+              El campo debe tener un formato hh:mm:ss
+            </div>
+            <div class="alert alert-danger alert-dismissible fade show"
+              *ngIf="entrenamientoRutinaForm.get('tiempo')!.hasError('maxlength')">
+              El campo debe tener un formato hh:mm:ss
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!--Fecha-->
+
+  <div class="container" id="buttons">
+    <div class="row">
+      <div class="col-2"></div>
+      <div class="col-3"><button type="submit" class="btn btn-primary" [disabled]="!entrenamientoRutinaForm.valid">
+          Crear Entrenamiento de Rutina
+        </button></div>
+      <div class="col-2"></div>
+      <div class="col-3"><button type="button" class="btn btn-danger ml-3" (click)="cancelarEntreRutina()">
+          Cancelar
+        </button></div>
+      <div class="col-2"></div>
+    </div>
+  </div>
+</form>

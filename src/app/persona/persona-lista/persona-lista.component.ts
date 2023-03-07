@@ -2,7 +2,7 @@ import { EntrenamientoService } from './../../entrenamiento/entrenamiento.servic
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { Entrenamiento } from 'src/app/entrenamiento/entrenamiento';
+import { Entrenamiento, EntrenamientoRutina } from 'src/app/entrenamiento/entrenamiento';
 import { Persona } from '../persona';
 import { PersonaService } from '../persona.service';
 
@@ -18,6 +18,7 @@ export class PersonaListaComponent implements OnInit {
   elegida: Boolean = false
   personaElegida: Persona
   entrenamientos: Array<Entrenamiento> = []
+  entrenamientosRutina: Array<EntrenamientoRutina> = []
 
   constructor(
     private routerPath: Router,
@@ -36,6 +37,9 @@ export class PersonaListaComponent implements OnInit {
       this.personaElegida = persona;
       this.entrenamientos = entrenamientos;
     });
+    this.entrenamientoService.darEntrenamientosRutina(persona.id).subscribe((entrenamientosRutina) => {
+      this.entrenamientosRutina = entrenamientosRutina;
+    })
   }
 
   personaCrear(): void {
@@ -85,6 +89,9 @@ export class PersonaListaComponent implements OnInit {
               this.personaElegida = this.personas[i];
               this.entrenamientos = entrenamientos;
             });
+            this.entrenamientoService.darEntrenamientosRutina(personaId).subscribe((entrenamientosRutina) => {
+              this.entrenamientosRutina = entrenamientosRutina;
+            })
             //i=this.personas.length;
           }
         }

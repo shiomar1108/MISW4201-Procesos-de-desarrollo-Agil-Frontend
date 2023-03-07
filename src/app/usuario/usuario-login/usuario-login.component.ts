@@ -43,8 +43,8 @@ export class UsuarioLoginComponent implements OnInit {
           this.router.navigate([`/persona`])
         } else if(this.rol == "ADM"){
           this.router.navigate([`/entrenador`])
-        }else {
-          // Pantalla del cliente
+        }else if(this.rol == "CLI"){
+          this.router.navigate([`/cliente`])
         }
 
       },

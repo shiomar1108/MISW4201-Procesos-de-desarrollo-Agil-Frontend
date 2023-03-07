@@ -32,7 +32,6 @@ export class EntrenadorListaComponent implements OnInit {
   ngOnInit() {
     this.entrenadorService.darEntrenadores().subscribe((entrenadores) => {
       this.entrenadores = entrenadores;
-    console.log(this.entrenadores);
     })
   }
 
