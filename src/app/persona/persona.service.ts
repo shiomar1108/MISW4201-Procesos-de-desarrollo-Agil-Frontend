@@ -58,4 +58,12 @@ export class PersonaService {
 
   }
 
+  darResultados(id: number): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+    })
+    return this.http.get<Persona>(`${this.apiUrl}/resultadosEntrenamientos/${id}`, { headers: headers })
+
+  }
+
 }

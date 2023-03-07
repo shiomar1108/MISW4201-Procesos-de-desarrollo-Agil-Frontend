@@ -50,6 +50,7 @@
         <thead>
           <tr>
             <th>Fecha</th>
+            <th>Tipo de Entrenamiento</th>
             <th># repeticiones realizadas</th>
             <th>Calorías consumidas</th>
           </tr>
@@ -57,8 +58,9 @@
         <tbody>
           <tr *ngFor="let resultado of resultados">
             <td>{{resultado.fecha}}</td>
-            <td>{{resultado.repeticiones | number:'1.2-2'}}</td>
-            <td>{{resultado.calorias | number:'1.2-2'}}</td>
+             <td>{{resultado['Tipo de Entrenamiento']}}</td>
+            <td>{{resultado['Repeticiones Ejecutadas'] | number:'1.2-2'}}</td>
+            <td>{{resultado['Calorias Consumidas'] | number:'1.2-2'}}</td>
           </tr>
         </tbody>
       </table>

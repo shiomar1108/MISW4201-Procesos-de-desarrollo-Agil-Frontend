@@ -28,7 +28,11 @@ export class PersonaReporteComponent implements OnInit {
       this.persona = reporte.persona
       this.imc = reporte.imc
       this.clasificacion = reporte.clasificacion_imc
-      this.resultados = reporte.resultados
+      //this.resultados = reporte.resultados
+    });
+    this.personaService.darResultados(idPersona).subscribe((resultados) => {
+      console.log(resultados)
+      this.resultados = resultados
     });
   }
 
