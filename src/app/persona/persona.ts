@@ -14,12 +14,13 @@ export class Persona {
     entrenando: boolean;
     terminado: Date;
     razon: string;
-    entrenamientos: Array<Entrenamiento>
+    entrenamientos: Array<Entrenamiento>;
+    usuario: number;
 
 
     public constructor(id: number, nombre: string, apellido:string, talla: number, peso: number, edad: number,
         ingreso: Date, brazo: number, pecho: number, cintura: number, pierna: number, entrenando: boolean,
-        terminado: Date, razon: string) {
+        terminado: Date, razon: string, usuario: number) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -35,5 +36,6 @@ export class Persona {
         this.terminado = terminado;
         this.razon = razon;
         this.entrenamientos = [];
+        this.usuario = usuario;
     }
 }

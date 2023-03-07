@@ -3,12 +3,12 @@
   <div class="col col-4" id="personaLista">
     <div class="card" style="width: 100%;">
       <div class="card-header">
-        Bienvenid@ {{personaElegida.nombre}} {{personaElegida.nombre}}
+        Bienvenid@ {{personaElegida?.nombre}}
       </div>
       <table class="table" border="1">
         <tbody>
           <tr *ngFor="let persona of personas">
-            <td>{{persona.nombre}} {{persona.nombre}}</td>
+            <td>{{persona?.nombre}}</td>
             <td id="botones">
               <button [disabled]="!persona.entrenando" type="button" class="btn btn-warning" ><i class="bi bi-eye"></i></button>&nbsp;
               <button type="button" class="btn btn-primary" (click)="personaReporte(persona.id)"><i class="bi bi-clipboard-heart"></i></button>&nbsp;
@@ -25,7 +25,7 @@
     <div *ngIf="elegida">
       <div class="card" style="width: 100%;">
         <div class="card-body">
-          <h5 class="card-title">{{personaElegida.nombre}} {{personaElegida.apellido}}</h5>
+          <h5 class="card-title">{{personaElegida?.nombre}} {{personaElegida?.apellido}}</h5>
           <!--<p class="card-text" *ngIf="personaElegida">
             <app-persona-detalle [personaDetalle]="personaElegida"></app-persona-detalle>
             <app-entrenamiento-persona-lista [entrenamientos]="entrenamientos" [personaDetalle]="personaElegida" [entrenamientosRutina]="entrenamientosRutina"></app-entrenamiento-persona-lista>
