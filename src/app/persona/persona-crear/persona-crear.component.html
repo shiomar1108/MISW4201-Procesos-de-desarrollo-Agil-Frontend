@@ -234,12 +234,12 @@
                   </div>
                   <div class="alert alert-danger alert-dismissible fade show"
                     *ngIf="personaForm.get('contrasena')?.value !== personaForm.get('confirmar')?.value  &&
-                    personaForm.get('contrasena')!.touched">
+                    personaForm.get('confirmar')!.touched">
                     Las contraseñas no coinciden
                   </div>
                   <div class="alert alert-danger alert-dismissible fade show"
                   *ngIf="personaForm.get('confirmar')!.hasError('pattern') &&
-                  personaForm.get('contrasena')!.touched">
+                  personaForm.get('confirmar')!.touched">
                     Las contrasenas deben tener: mínimo 8 caracteres, que tenga caracteres alfanuméricos y tenga al menos un carácter en mayúscula.
                   </div>
                 </div>
