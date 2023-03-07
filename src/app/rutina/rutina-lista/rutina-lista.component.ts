@@ -28,16 +28,20 @@ export class RutinaListaComponent implements OnInit {
     this.routerPath.navigate(['/rutina/crear']);
   }
 
-  darRutina(rutina: Rutina): void {
+  darRutina(idRutina: number): void {
     this.esRutinaSeleccionada = true;
-    this.rutinaSeleccionada = rutina;
+    this.rutinaService.darRutina(idRutina).subscribe((rutina) => {
+      this.rutinaSeleccionada = rutina;
+      this.displayStyle = "none";
+    })
   };
 
   asignarEjercicio(): void{
     this.rutinaService.asignarEJercicio(this.rutinaSeleccionada.id,this.ejercicioSeleccionado.id).subscribe((rutina) => {
       this.rutinaSeleccionada = rutina;
-      window.location.reload();
       this.displayStyle = "none";
+      this.darRutina(this.rutinaSeleccionada.id);
+      this.ejercicioSeleccionado = this.ejercicios[0];
     })
   }
 
