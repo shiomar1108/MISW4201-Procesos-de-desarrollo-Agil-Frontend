@@ -41,7 +41,7 @@ export class RutinaListaComponent implements OnInit {
       this.rutinaSeleccionada = rutina;
       this.displayStyle = "none";
       this.darRutina(this.rutinaSeleccionada.id);
-      this.ejercicioSeleccionado = this.ejercicios[0];
+      // this.ejercicioSeleccionado = this.ejercicios[0];
     })
   }
 

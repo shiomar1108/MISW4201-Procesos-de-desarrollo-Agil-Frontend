@@ -37,11 +37,11 @@
           <div class="container">
             <div class="row">
               <p class="col-4 card-text fw-bold">Nombre Rutina:</p>
-              <p class="col-8 card-text">{{rutinaSeleccionada.nombre}}</p>
+              <p class="col-8 card-text">{{rutinaSeleccionada?.nombre}}</p>
             </div>
             <div class="row">
               <p class="col-4 card-text fw-bold">Descripción:</p>
-              <p class="col-8 card-text">{{rutinaSeleccionada.descripcion}}</p>
+              <p class="col-8 card-text">{{rutinaSeleccionada?.descripcion}}</p>
             </div>
           </div>
           <div class="card" style="width: 100%;">
@@ -57,7 +57,7 @@
               </div>
             </div>
             <!--Tabla que lista las rutinas-->
-            <table class="table" border="1" id="ejerciciosTable" *ngIf="rutinaSeleccionada.ejercicios.length > 0">
+            <table class="table" border="1" id="ejerciciosTable" *ngIf="rutinaSeleccionada?.ejercicios.length > 0">
               <tbody>
                 <tr *ngFor="let ejercicio of rutinaSeleccionada.ejercicios">
                   <td id="rutinaName">{{ejercicio.nombre}}</td>
