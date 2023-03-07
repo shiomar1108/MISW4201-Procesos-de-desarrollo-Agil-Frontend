@@ -87,7 +87,12 @@
               La contraseña no debe exceder los 50 carácteres
             </div>
             <div class="alert alert-danger my-3" *ngIf="usuarioForm.get('password')?.hasError('minlength')">
-              La contraseña debe tener más de 4 carácteres
+              La contraseña debe tener más de 8 carácteres
+            </div>
+            <div class="alert alert-danger alert-dismissible fade show"
+            *ngIf="usuarioForm.get('password')!.hasError('pattern') &&
+            usuarioForm.get('password')!.touched">
+              Las contrasenas deben tener: mínimo 8 caracteres, que tenga caracteres alfanuméricos y tenga al menos un carácter en mayúscula.
             </div>
           </div>
           <!--Input text de confirmar contraseña-->
@@ -107,11 +112,17 @@
               La contraseña no debe exceder los 50 carácteres
             </div>
             <div class="alert alert-danger my-3" *ngIf="usuarioForm.get('confirmPassword')?.hasError('minlength')">
-              La contraseña debe tener más de 4 carácteres
+              La contraseña debe tener más de 8 carácteres
             </div>
             <div class="alert alert-danger my-3"
-              *ngIf="usuarioForm.get('confirmPassword')?.value !== usuarioForm.get('password')?.value">
+              *ngIf="usuarioForm.get('confirmPassword')?.value !== usuarioForm.get('password')?.value &&
+              usuarioForm.get('confirmPassword')!.touched" >
               Las contraseñas no coinciden
+            </div>
+            <div class="alert alert-danger alert-dismissible fade show"
+            *ngIf="usuarioForm.get('confirmPassword')!.hasError('pattern') &&
+            usuarioForm.get('confirmPassword')!.touched">
+              Las contrasenas deben tener: mínimo 8 caracteres, que tenga caracteres alfanuméricos y tenga al menos un carácter en mayúscula.
             </div>
           </div>
           <div class="col-12 text-center mt-3">
