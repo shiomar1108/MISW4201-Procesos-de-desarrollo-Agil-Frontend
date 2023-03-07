@@ -41,6 +41,9 @@ export class RutinaCrearComponent implements OnInit {
       else if (error.statusText === "UNPROCESSABLE ENTITY") {
         this.toastr.error("Error","No hemos podido identificarlo, por favor vuelva a iniciar sesión.")
       }
+      else if (error.statusText === "CONFLICT") {
+        this.toastr.error("Error","La Rutina ya existe.")
+      }
       else {
         this.toastr.error("Error","Ha ocurrido un error. " + error.message)
       }
