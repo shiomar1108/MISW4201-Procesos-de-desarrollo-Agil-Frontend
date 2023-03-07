@@ -20,4 +20,11 @@ export class EntrenadorService {
     return this.http.get<Persona[]>(`${this.apiUrl}/entrenadores`, { headers: headers })
   }
 
+  eliminarEntrenador(id: number): Observable<Persona> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+    })
+    return this.http.delete<Persona>(`${this.apiUrl}/entrenador/${id}`, { headers: headers })
+  }
+
 }
