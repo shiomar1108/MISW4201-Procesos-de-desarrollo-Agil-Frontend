@@ -49,18 +49,18 @@
       <table class="table table-striped" border="1">
         <thead>
           <tr>
-            <th>Fecha</th>
-            <th>Tipo de Entrenamiento</th>
-            <th># repeticiones realizadas</th>
-            <th>Calorías consumidas</th>
+            <th scope="col">Fecha</th>
+            <th scope="col">Tipo de Entrenamiento</th>
+            <th scope="col"># repeticiones realizadas</th>
+            <th scope="col">Calorías consumidas</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let resultado of resultados">
-            <td>{{resultado.fecha}}</td>
-             <td>{{resultado['Tipo de Entrenamiento']}}</td>
-            <td>{{resultado['Repeticiones Ejecutadas'] | number:'1.2-2'}}</td>
-            <td>{{resultado['Calorias Consumidas'] | number:'1.2-2'}}</td>
+            <td class="fecha">{{resultado.fecha}}</td>
+            <td class="tipo">{{resultado['Tipo de Entrenamiento']}}</td>
+            <td class="repeticiones">{{resultado['Repeticiones Ejecutadas'] | number:'1.2-2'}}</td>
+            <td class="calorias">{{resultado['Calorias Consumidas'] | number:'1.2-2'}}</td>
           </tr>
         </tbody>
       </table>
