@@ -18,7 +18,7 @@
           <tr *ngFor="let rutina of rutinas">
             <td id="rutinaName">{{rutina.nombre}}</td>
             <td align="right">
-              <button type="button" class="btn btn-warning" (click)="darRutina(rutina)"><i
+              <button type="button" class="btn btn-warning" (click)="darRutina(rutina.id)"><i
                   class="bi bi-eye"></i></button>&nbsp;
               <button type="button" class="btn btn-primary"><i class="bi bi-pencil"></i></button>&nbsp;
               <button type="button" class="btn btn-danger"><i class="bi bi-trash"></i></button>&nbsp;
@@ -37,11 +37,11 @@
           <div class="container">
             <div class="row">
               <p class="col-4 card-text fw-bold">Nombre Rutina:</p>
-              <p class="col-8 card-text">{{rutinaSeleccionada.nombre}}</p>
+              <p class="col-8 card-text">{{rutinaSeleccionada?.nombre}}</p>
             </div>
             <div class="row">
               <p class="col-4 card-text fw-bold">Descripción:</p>
-              <p class="col-8 card-text">{{rutinaSeleccionada.descripcion}}</p>
+              <p class="col-8 card-text">{{rutinaSeleccionada?.descripcion}}</p>
             </div>
           </div>
           <div class="card" style="width: 100%;">
@@ -57,7 +57,7 @@
               </div>
             </div>
             <!--Tabla que lista las rutinas-->
-            <table class="table" border="1" id="ejerciciosTable" *ngIf="rutinaSeleccionada.ejercicios.length > 0">
+            <table class="table" border="1" id="ejerciciosTable" *ngIf="rutinaSeleccionada?.ejercicios.length > 0">
               <tbody>
                 <tr *ngFor="let ejercicio of rutinaSeleccionada.ejercicios">
                   <td id="rutinaName">{{ejercicio.nombre}}</td>
@@ -82,8 +82,10 @@
         <p class="card-text fw-bold">Ejercicios Disponibles</p>
         <div class="row">
           <div class="container">
-            <select id="selectEjercicio" class="form-control" name="ejercicio" [(ngModel)]="ejercicioSeleccionado" [ngModelOptions]="{standalone: true}">
-              <option *ngFor="let ejercicio of ejercicios" [ngValue]="ejercicio">
+            <select id="selectEjercicio" class="form-control" name="ejercicio" [(ngModel)]="ejercicioSeleccionadoId"
+              [ngModelOptions]="{standalone: false}">
+              <option ngSwitch="ejercicios > 0" [ngValue]="null" selected>Seleccione un ejercicio</option>
+              <option *ngFor="let ejercicio of ejercicios; let i = index" [attr.value]="ejercicio.id">
                 {{ ejercicio.nombre }}
               </option>
             </select>
