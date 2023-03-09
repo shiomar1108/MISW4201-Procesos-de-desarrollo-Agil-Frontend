@@ -1,3 +1,9 @@
-/* Este comentarios es para evitar errores de en SonarLint
- * Este archivo esta reservado para futuras modificaciones del
- * estilo del HTML para el componente */
+.total {
+  font-weight: bold;
+}
+.total_repeticiones {
+  font-weight: bold;
+}
+.total_calorias {
+  font-weight: bold;
+}
