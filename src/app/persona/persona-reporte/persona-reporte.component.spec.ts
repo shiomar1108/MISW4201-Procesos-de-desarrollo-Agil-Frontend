@@ -62,7 +62,8 @@ describe('PersonaReporteComponent', () => {
       faker.datatype.number({min:15, max:90}),
       true,
       null,
-      null
+      null,
+      1
     )
     const imc = faker.datatype.number({min:5, max:30})
     const clasificacion = 'bajo';

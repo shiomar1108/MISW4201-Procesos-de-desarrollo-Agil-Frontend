@@ -2,7 +2,7 @@ import { PersonaTerminarComponent } from './persona-terminar/persona-terminar.co
 import { PersonaReporteComponent } from './persona-reporte/persona-reporte.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { EncabezadoAppModule } from '../encabezado-app/encabezado-app.module';
 import { PersonaDetalleComponent } from './persona-detalle/persona-detalle.component';
