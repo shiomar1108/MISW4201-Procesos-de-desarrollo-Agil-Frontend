@@ -24,6 +24,13 @@ export class RutinaService {
     return this.http.get<Rutina[]>(`${this.apiUrl}/rutinas`, { headers: headers })
   }
 
+  darRutina(id_rutina: number): Observable<Rutina> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+    })
+    return this.http.get<Rutina>(`${this.apiUrl}/rutina/${id_rutina}`, { headers: headers })
+  }
+
   crearRutina(rutina: Rutina): Observable<Rutina[]> {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${sessionStorage.getItem('token')}`
@@ -43,6 +50,13 @@ export class RutinaService {
       'Authorization': `Bearer ${sessionStorage.getItem('token')}`
     })
     return this.http.put<Rutina>(`${this.apiUrl}/rutina/${idRutina}/ejercicio/${idEjercicio}`, null, { headers: headers })
+  }
+
+  darRutinaEntrenamiento(): Observable<Rutina[]> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+    })
+    return this.http.get<Rutina[]>(`${this.apiUrl}/rutinasEntrenamiento`, { headers: headers })
   }
 
 }

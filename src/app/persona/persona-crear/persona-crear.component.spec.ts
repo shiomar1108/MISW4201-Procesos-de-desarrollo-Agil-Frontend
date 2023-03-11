@@ -33,4 +33,42 @@ describe('PersonaCrearComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('Debe Existir form Rutina', () => {
+    const debugElement =
+      fixture.debugElement.nativeElement.querySelector('#msform');
+    expect(debugElement).toBeTruthy();
+  });
+
+  it('Debe Existir campo Nombre', () => {
+    const debugElement =
+      fixture.debugElement.nativeElement.querySelector('#nombre');
+    expect(debugElement).toBeTruthy();
+  });
+
+  it('Debe Existir campo Apellido', () => {
+    const debugElement =
+      fixture.debugElement.nativeElement.querySelector('#apellido');
+    expect(debugElement).toBeTruthy();
+  });
+
+  it('Debe Existir campo Edad', () => {
+    const debugElement =
+      fixture.debugElement.nativeElement.querySelector('#edad');
+    expect(debugElement).toBeTruthy();
+  });
+
+  it('Debe Existir campo Ingreso', () => {
+    const debugElement =
+      fixture.debugElement.nativeElement.querySelector('#ingreso');
+    expect(debugElement).toBeTruthy();
+  });
+
+  it('Debe Existir Boton de Siguiente', () => {
+    const debugElement = fixture.debugElement.query(
+      By.css('button[type=button]')
+    );
+    expect(debugElement).toBeTruthy();
+  });
+
 });

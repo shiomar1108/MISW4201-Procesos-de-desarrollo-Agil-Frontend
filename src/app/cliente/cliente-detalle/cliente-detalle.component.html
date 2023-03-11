@@ -1,0 +1,108 @@
+<app-encabezado></app-encabezado>
+<div class="row">
+  <div class="col col-4" id="personaLista">
+    <div class="card" style="width: 100%;">
+      <div class="card-header">
+        Bienvenid@ {{personaElegida?.nombre}}
+      </div>
+      <table class="table" border="1">
+        <tbody>
+          <tr *ngFor="let persona of personas">
+            <td>{{persona?.nombre}}</td>
+            <td id="botones">
+              <button [disabled]="!persona.entrenando" type="button" class="btn btn-warning"><i
+                  class="bi bi-eye"></i></button>&nbsp;
+              <button type="button" class="btn btn-primary" (click)="personaReporte(persona.id)"><i
+                  class="bi bi-clipboard-heart"></i></button>&nbsp;
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="col col-8" id="personaDetalle">
+    <div *ngIf="elegida">
+      <div class="card" style="width: 100%;">
+        <div class="card-body">
+          <h5 class="card-title">{{personaElegida?.nombre}} {{personaElegida?.apellido}}</h5>
+          <div class="card" style="width: 100%;" *ngIf="persona">
+            <div class="card-body">
+              <div class="card-text">
+                <div class="row">
+                  <div class="col col-12">
+                    <div class="card" style="width: 100%;">
+                      <div class="card-header">
+                        Datos de la persona
+                      </div>
+                      <div class="row">
+                        <div class="col col-2 fw-bold text-end">
+                          Talla
+                        </div>
+                        <div class="col col-2">
+                          {{persona.talla | number:'1.2-2'}} m
+                        </div>
+                        <div class="col col-3 fw-bold text-end">
+                          Peso
+                        </div>
+                        <div class="col col-2">
+                          {{persona.peso | number:'1.2-2'}} Kg
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col col-2 fw-bold text-end">
+                          IMC
+                        </div>
+                        <div class="col col-2">
+                          {{imc | number:'1.2-2'}}
+                        </div>
+                        <div class="col col-3 fw-bold text-end">
+                          Clasificación IMC
+                        </div>
+                        <div class="col col-2">
+                          {{clasificacion}}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <br />
+              <div class="card" style="width: 100%;">
+                <div class="card-header">
+                  Resultados
+                </div>
+                <table class="table table-striped" border="2">
+                  <thead>
+                    <tr>
+                      <th scope="col" style="text-align: center">Fecha</th>
+                      <th scope="col" style="text-align: center">Tipo de Entrenamiento</th>
+                      <th scope="col" style="text-align: center"># repeticiones realizadas</th>
+                      <th scope="col" style="text-align: center">Calorías consumidas</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let resultado of resultados">
+                      <td class="fecha" style="text-align: center">{{resultado.fecha}}</td>
+                      <td class="tipo" style="text-align: center">{{resultado['Tipo de Entrenamiento']}}</td>
+                      <td class="repeticiones" style="text-align: center">{{resultado['Repeticiones Ejecutadas'] |
+                        number:'1.2-2'}}</td>
+                      <td class="calorias" style="text-align: center">{{resultado['Calorias Consumidas'] |
+                        number:'1.2-2'}}</td>
+                    </tr>
+                    <tr>
+                      <td class="total" style="text-align: center">TOTAL</td>
+                      <td style="text-align: center"></td>
+                      <td class="total_repeticiones" style="text-align: center">{{repeticiones_totales |
+                        number:'1.2-2'}}</td>
+                      <td class="total_calorias" style="text-align: center">{{calorias_totales | number:'1.2-2'}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

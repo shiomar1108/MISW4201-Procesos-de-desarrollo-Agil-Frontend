@@ -12,7 +12,7 @@ import { EntrenadorService } from '../entrenador.service';
 export class EntrenadorListaComponent implements OnInit {
 
   elegida: Boolean = false
-  entrenadores:Array<Persona>
+  entrenadores: Array<Persona>
   entrenadorElegido: Persona
 
   constructor(
@@ -21,18 +21,36 @@ export class EntrenadorListaComponent implements OnInit {
     private toastr: ToastrService,
   ) { }
 
-  entrenadorCrear(): void {   }
+  entrenadorCrear(): void { }
 
-  entrenadorDetalles(id:number):void {    }
+  entrenadorDetalles(id: number): void { }
 
-  entrenadorEditar(id:number):void {    }
+  entrenadorEditar(id: number): void { }
 
-  entrenadorEliminar(id:number):void {    }
+  entrenadorEliminar(id: number): void {
+    this.entrenadorService.eliminarEntrenador(id).subscribe((persona) => {
+      this.toastr.success("Confirmation", "Entrenador eliminado de la lista")
+      this.ngOnInit();
+    },
+      error => {
+        if (error.statusText === "UNAUTHORIZED") {
+          this.toastr.error("Error", "Su sesión ha caducado, por favor vuelva a iniciar sesión.")
+        }
+        else if (error.statusText === "UNPROCESSABLE ENTITY") {
+          this.toastr.error("Error", "No hemos podido identificarlo, por favor vuelva a iniciar sesión.")
+        }
+        else if (error.statusText === "CONFLICT") {
+          this.toastr.error("Error", `No se pudo eliminar entrenador: ${error.error}`)
+        }
+        else {
+          this.toastr.error("Error", "Ha ocurrido un error. " + error.message)
+        }
+      })
+  }
 
   ngOnInit() {
     this.entrenadorService.darEntrenadores().subscribe((entrenadores) => {
       this.entrenadores = entrenadores;
-    console.log(this.entrenadores);
     })
   }
 

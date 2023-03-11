@@ -1,0 +1,35 @@
+h3 {
+  text-align: center;
+  align-items : center;
+  height: 100px;
+  font-size: 50px;
+}
+
+#buttons{
+  padding: 20px;
+}
+
+button {
+  font-size: 20px;
+  padding: 5px;
+  min-width: 200px;
+}
+
+label{
+  font-weight: BOLD;
+  font-size: 25px;
+  padding-left: 15px;
+  padding-bottom: 5px;
+}
+
+input{
+  padding-left: 15px;
+}
+
+td {
+  text-align: center;
+}
+
+th {
+  text-align: center;
+}

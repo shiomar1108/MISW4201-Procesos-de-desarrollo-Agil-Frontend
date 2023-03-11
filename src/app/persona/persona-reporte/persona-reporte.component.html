@@ -46,19 +46,27 @@
       <div class="card-header">
         Resultados
       </div>
-      <table class="table table-striped" border="1">
+      <table class="table table-striped" border="2">
         <thead>
           <tr>
-            <th>Fecha</th>
-            <th># repeticiones realizadas</th>
-            <th>Calorías consumidas</th>
+            <th scope="col" style="text-align: center">Fecha</th>
+            <th scope="col" style="text-align: center">Tipo de Entrenamiento</th>
+            <th scope="col" style="text-align: center"># repeticiones realizadas</th>
+            <th scope="col" style="text-align: center">Calorías consumidas</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let resultado of resultados">
-            <td>{{resultado.fecha}}</td>
-            <td>{{resultado.repeticiones | number:'1.2-2'}}</td>
-            <td>{{resultado.calorias | number:'1.2-2'}}</td>
+            <td class="fecha" style="text-align: center">{{resultado.fecha}}</td>
+            <td class="tipo" style="text-align: center">{{resultado['Tipo de Entrenamiento']}}</td>
+            <td class="repeticiones" style="text-align: center">{{resultado['Repeticiones Ejecutadas'] | number:'1.2-2'}}</td>
+            <td class="calorias" style="text-align: center">{{resultado['Calorias Consumidas'] | number:'1.2-2'}}</td>
+          </tr>
+          <tr>
+            <td class="total" style="text-align: center">TOTAL</td>
+            <td style="text-align: center"></td>
+            <td class="total_repeticiones" style="text-align: center">{{repeticiones_totales | number:'1.2-2'}}</td>
+            <td class="total_calorias" style="text-align: center">{{calorias_totales | number:'1.2-2'}}</td>
           </tr>
         </tbody>
       </table>

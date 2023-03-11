@@ -1,14 +1,19 @@
-<div class="row">
+<div class="row" id="ejerciciosCard">
   <div class="col col-12">
     <div class="card" style="width: 100%;">
       <div class="card-body">
-        <h5 class="card-title">Datos de entrenamiento
-          <button type="button" class="btn btn-warning" (click)="entrenamientoCrear()"><i class="bi bi-plus-circle"></i></button>
-        </h5>
-        <table class="table table-striped" border="1">
+        <div class="row">
+          <div class="col col-9">
+            <h5 class="card-title" id="ejercicoTitle">Ejercicios</h5>
+          </div>
+          <div class="col col-3" style="display: flex; justify-content: flex-end"><button type="button"
+              class="btn btn-warning" (click)="entrenamientoCrear()"><i class="bi bi-plus-circle"></i></button>
+          </div>
+        </div>
+        <table class="table table-striped" border="1" id="ejercicioTable">
           <thead>
             <tr>
-              <th>Ejercicio</th>
+              <th>Descripción</th>
               <th>Fecha</th>
               <th>Duración</th>
               <th>Repeticiones</th>
@@ -22,9 +27,53 @@
               <td>{{entrenamiento.tiempo}}</td>
               <td>{{entrenamiento.repeticiones | number:'1.2-2'}}</td>
               <td>
-                <button type="button" class="btn btn-primary" (click)="entrenamientoEditar(entrenamiento.id)"><i class="bi bi-pencil"></i></button>&nbsp;
+                <button type="button" class="btn btn-primary" (click)="entrenamientoEditar(entrenamiento.id)"><i
+                    class="bi bi-pencil"></i></button>&nbsp;
                 &nbsp;
-                <button type="button" class="btn btn-danger" (click)="entrenamientoEliminar(entrenamiento.id)"><i class="bi bi-trash"></i></button>
+                <button type="button" class="btn btn-danger" (click)="entrenamientoEliminar(entrenamiento.id)"><i
+                    class="bi bi-trash"></i></button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row" id="rutinasCard">
+  <div class="col col-12">
+    <div class="card" style="width: 100%;">
+      <div class="card-body">
+        <div class="row">
+          <div class="col col-9">
+            <h5 class="card-title" id="rutinaTitle">Rutinas</h5>
+          </div>
+          <div class="col col-3" style="display: flex; justify-content: flex-end"><button type="button"
+              class="btn btn-warning" (click)="entrenamientoRutinaCrear()"><i class="bi bi-plus-circle"></i></button>
+          </div>
+        </div>
+        <table class="table table-striped" border="1" id="rutinaTable">
+          <thead>
+            <tr>
+              <th>Descripción</th>
+              <th>Fecha</th>
+              <th>Duración Total</th>
+              <th>Repeticiones Totales</th>
+              <th>Ejercicios</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let entrenamientoR of entrenamientosRutina">
+              <td>{{entrenamientoR.rutina.nombre}}</td>
+              <td>{{entrenamientoR.fecha | date: 'dd/MM/yyyy'}}</td>
+              <td>{{entrenamientoR.tiempoTotal}}</td>
+              <td>{{entrenamientoR.repeticionesTotales| number:'1.2-2'}}</td>
+              <td>{{entrenamientoR.entrenamientos.length}}</td>
+              <td>
+                <button type="button" class="btn btn-primary"><i class="bi bi-pencil"></i></button>&nbsp;
+                &nbsp;
+                <button type="button" class="btn btn-danger"><i class="bi bi-trash"></i></button>
               </td>
             </tr>
           </tbody>

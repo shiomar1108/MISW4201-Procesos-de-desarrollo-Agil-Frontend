@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { EncabezadoAppModule } from '../encabezado-app/encabezado-app.module';
 import { EntrenamientoCrearComponent } from './entrenamiento-crear/entrenamiento-crear.component';
+import { EntrenamientoRutinaCrearComponent } from './entrenamientoRutina-crear/entrenamientoRutina-crear.component';
 
 @NgModule({
   imports: [
@@ -13,11 +14,13 @@ import { EntrenamientoCrearComponent } from './entrenamiento-crear/entrenamiento
   ],
   exports: [
     EntrenamientoCrearComponent,
-    EntrenamientoEditarComponent
+    EntrenamientoEditarComponent,
+    EntrenamientoRutinaCrearComponent
   ],
   declarations: [
     EntrenamientoCrearComponent,
-    EntrenamientoEditarComponent
+    EntrenamientoEditarComponent,
+    EntrenamientoRutinaCrearComponent
   ]
 })
 export class EntrenamientoModule { }

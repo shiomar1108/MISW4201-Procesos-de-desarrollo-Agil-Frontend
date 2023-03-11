@@ -20,7 +20,7 @@ export class PersonaService {
     return this.http.get<Persona[]>(`${this.apiUrl}/personas/${idUsuario}`, { headers: headers })
   }
 
-  crearPersona(persona: Persona): Observable<Persona> {
+  crearPersona(persona: any): Observable<Persona> {
     const idUsuario = sessionStorage.getItem('idUsuario');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${sessionStorage.getItem('token')}`
@@ -55,6 +55,14 @@ export class PersonaService {
       'Authorization': `Bearer ${sessionStorage.getItem('token')}`
     })
     return this.http.get<Persona>(`${this.apiUrl}/persona/${id}/reporte`, { headers: headers })
+
+  }
+
+  darResultados(id: number): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+    })
+    return this.http.get<Persona>(`${this.apiUrl}/resultadosEntrenamientos/${id}`, { headers: headers })
 
   }
 

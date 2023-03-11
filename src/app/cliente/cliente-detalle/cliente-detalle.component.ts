@@ -1,14 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Persona } from '../persona';
-import { PersonaService } from '../persona.service';
+import { ToastrService } from 'ngx-toastr';
+import { Persona } from 'src/app/persona/persona';
+import { PersonaService } from 'src/app/persona/persona.service';
+
 
 @Component({
-  selector: 'app-persona-reporte',
-  templateUrl: './persona-reporte.component.html',
-  styleUrls: ['./persona-reporte.component.css']
+  selector: 'app-cliente-detalle',
+  templateUrl: './cliente-detalle.component.html',
+  styleUrls: ['./cliente-detalle.component.css']
 })
-export class PersonaReporteComponent implements OnInit {
+export class ClienteDetalleComponent implements OnInit {
+
+  personas:Array<Persona> = []
+  elegida: Boolean = false
+  personaElegida: Persona
+  idUsuario: string
 
   persona: Persona
   imc: number
@@ -20,11 +27,26 @@ export class PersonaReporteComponent implements OnInit {
   constructor(
     private routerPath: Router,
     private router: ActivatedRoute,
+    private toastr: ToastrService,
     private personaService: PersonaService
-  ) { }
+    ) { }
+
+
 
   ngOnInit() {
-    const idPersona = parseInt(this.router.snapshot.params['id']);
+    this.idUsuario = sessionStorage.getItem('idUsuario');
+    this.personaService.darPersona(Number(this.idUsuario)).subscribe((persona) => {
+      this.elegida = true;
+      this.personaElegida = persona;
+      this.personas.push(this.personaElegida);
+    });
+  }
+
+  personaReporte(idPersona: number): void {
+    console.log("si")
+    // this.routerPath.navigate(['/persona/reporte/' + idPersona]);
+
+    // const idPersona = parseInt(this.router.snapshot.params['id']);
     let repeticiones_totales = 0
     let calorias_totales = 0
     this.personaService.darReporte(idPersona).subscribe((reporte) => {
@@ -47,7 +69,6 @@ export class PersonaReporteComponent implements OnInit {
   }
 
   volver(): void {
-    const idPersona = parseInt(this.router.snapshot.params['id']);
-    this.routerPath.navigate(['/persona/' + idPersona]);
+    this.routerPath.navigate(['/cliente']);
   }
 }

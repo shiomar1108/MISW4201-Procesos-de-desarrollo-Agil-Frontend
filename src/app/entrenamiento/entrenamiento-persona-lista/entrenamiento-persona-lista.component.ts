@@ -4,6 +4,8 @@ import { ToastrService } from 'ngx-toastr';
 import { Persona } from 'src/app/persona/persona';
 import { Entrenamiento } from '../entrenamiento';
 import { EntrenamientoService } from '../entrenamiento.service';
+import { EntrenamientoRutina } from 'src/app/entrenamiento/entrenamiento';
+
 
 @Component({
   selector: 'app-entrenamiento-persona-lista',
@@ -14,6 +16,7 @@ export class EntrenamientoPersonaListaComponent implements OnInit {
 
   @Input() personaDetalle: Persona;
   @Input() entrenamientos: Array<Entrenamiento>;
+  @Input() entrenamientosRutina: Array<EntrenamientoRutina>;
 
   constructor(
     private routerPath: Router,
@@ -27,6 +30,9 @@ export class EntrenamientoPersonaListaComponent implements OnInit {
 
   entrenamientoCrear() {
     this.routerPath.navigate(['/entrenamiento/crear/' + this.personaDetalle.id]);
+  }
+  entrenamientoRutinaCrear() {
+    this.routerPath.navigate(['/entrenamientoRutina/crear/' + this.personaDetalle.id]);
   }
 
   entrenamientoEditar(idEntrenamiento: number) {
