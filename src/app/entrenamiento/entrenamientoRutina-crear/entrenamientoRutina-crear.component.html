@@ -4,7 +4,7 @@
 </h3>
 
 <form [formGroup]="entrenamientoRutinaForm" *ngIf="entrenamientoRutinaForm"
-  (ngSubmit)="!entrenamientoRutinaForm.invalid && crearEntreRutina(entrenamientoRutinaForm.value)" id="rutinaEntrenamientoForm">
+  (ngSubmit)="crearEntreRutina()" id="rutinaEntrenamientoForm">
 
   <!--Ejercicio-->
   <div class="form-group mx-sm-3 mb-2">
@@ -26,7 +26,8 @@
   <!--Fecha-->
   <div class="form-group mx-sm-3 mb-2">
     <label for="fecha">Fecha</label>
-    <input id="fecha" type="date" class="form-control" formControlName="fecha" placeholder="Fecha del ejercicio" />
+    <input id="fecha" type="date" class="form-control" formControlName="fecha" placeholder="Fecha del ejercicio"
+    (change)="onKeyFecha($event)"/>
     <div class="alert alert-danger alert-dismissible fade show" *ngIf="
       entrenamientoRutinaForm.get('fecha')!.hasError('required') &&
         entrenamientoRutinaForm.get('fecha')!.touched
@@ -51,10 +52,10 @@
         </tr>
       </thead>
       <tbody *ngIf="esRutinaSeleccionada">
-        <tr *ngFor="let ejercicio of rutinaSeleccionada.ejercicios">
+        <tr *ngFor="let ejercicio of rutinaSeleccionada.ejercicios; let index = index">
           <td>{{ejercicio.nombre}}</td>
           <td><input novalidate id="repeticiones" class="form-control" formControlName="repeticiones"
-              placeholder="Repeticiones" />
+              placeholder="Repeticiones" (keyup)="onKeyRepeticion($event)" />
             <div class="alert alert-danger alert-dismissible fade show" *ngIf="
               entrenamientoRutinaForm.get('repeticiones')!.hasError('required') &&
               entrenamientoRutinaForm.get('repeticiones')!.touched
@@ -63,7 +64,8 @@
             </div>
           </td>
           <td>
-            <input novalidate id="tiempo" class="form-control" formControlName="tiempo" placeholder="Tiempo" />
+            <input novalidate id="tiempo" class="form-control" formControlName="tiempo" placeholder="Tiempo"
+              (keyup)="onKeyTiempo($event)" [ngModel]="'hh:mm:ss'" />
             <div class="alert alert-danger alert-dismissible fade show" *ngIf="
             entrenamientoRutinaForm.get('tiempo')!.hasError('required') &&
             entrenamientoRutinaForm.get('tiempo')!.touched
@@ -79,6 +81,12 @@
               El campo debe tener un formato hh:mm:ss
             </div>
           </td>
+          <td>
+            <div class="col-3"><button type="button" class="btn btn-success ml-3" (click)="agregarEntrenameinto(ejercicio.id)">
+                Confirmar
+              </button></div>
+
+          </td>
         </tr>
       </tbody>
     </table>
@@ -89,7 +97,7 @@
   <div class="container" id="buttons">
     <div class="row">
       <div class="col-2"></div>
-      <div class="col-3"><button type="submit" class="btn btn-primary" [disabled]="!entrenamientoRutinaForm.valid">
+      <div class="col-3"><button type="submit" class="btn btn-primary">
           Crear Entrenamiento de Rutina
         </button></div>
       <div class="col-2"></div>
