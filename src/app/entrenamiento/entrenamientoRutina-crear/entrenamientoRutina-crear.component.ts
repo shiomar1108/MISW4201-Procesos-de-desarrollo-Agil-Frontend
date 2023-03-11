@@ -20,7 +20,13 @@ export class EntrenamientoRutinaCrearComponent implements OnInit {
   entrenamientoRutinaForm: FormGroup;
   rutinas: Array<Rutina>;
   rutinaSeleccionada!: Rutina;
-  esRutinaSeleccionada: boolean
+  esRutinaSeleccionada: boolean;
+  personaId = parseInt(this.router.snapshot.params['idPersona']);
+
+  arrayEjercicio = [];
+  repeticionSeleccionado: string;
+  tiempoSeleccionado: string;
+  fechaSeleccionada: string;
 
   constructor(
     private routerPath: Router,
@@ -32,9 +38,9 @@ export class EntrenamientoRutinaCrearComponent implements OnInit {
     private entrenamientoService: EntrenamientoService
   ) { }
 
-  ngOnInit()  {
-    const personaId = parseInt(this.router.snapshot.params['idPersona']);
-    this.personaService.darPersona(personaId).subscribe((persona) => {
+  ngOnInit() {
+
+    this.personaService.darPersona(this.personaId).subscribe((persona) => {
       this.persona = persona
       this.esRutinaSeleccionada = false;
       this.rutinaService.darRutinaEntrenamiento().subscribe((rutinas) => {
@@ -54,23 +60,55 @@ export class EntrenamientoRutinaCrearComponent implements OnInit {
 
   }
 
-  crearEntreRutina(entrenamiento: Entrenamiento): void {
-    this.entrenamientoService.crearEntrenRutina(entrenamiento, this.persona.id).subscribe((entrenamiento) => {
+
+  agregarEntrenameinto(ejercicio) {
+    this.arrayEjercicio.push({
+      tiempo: this.tiempoSeleccionado,
+      repeticiones: this.repeticionSeleccionado,
+      ejercicio: ejercicio
+    });
+    this.toastr.success("Confirmation", "Entrenamiento confirmado "+ ejercicio)
+  }
+
+
+  onKeyFecha(event) {
+    this.fechaSeleccionada = event.target.value;
+  }
+
+  onKeyRepeticion(event) {
+    this.repeticionSeleccionado = event.target.value;
+  }
+
+  onKeyTiempo(event) {
+    this.tiempoSeleccionado = event.target.value;
+  }
+
+  // crearEntreRutina(entrenamiento: Entrenamiento): void {
+  crearEntreRutina(): void {
+    let nuevoEntrenamientoRutina = {
+      idRutina: this.rutinaSeleccionada.id,
+      fecha: this.fechaSeleccionada,
+      idPersona: this.personaId,
+      entrenamientos: this.arrayEjercicio
+    };
+    console.log(nuevoEntrenamientoRutina);
+
+    this.entrenamientoService.crearEntrenRutina(nuevoEntrenamientoRutina, this.persona.id).subscribe((entrenamiento) => {
       this.toastr.success("Confirmation", "Entrenamiento creado")
       this.entrenamientoRutinaForm.reset();
       this.routerPath.navigate(['/persona/' + this.persona.id]);
     },
-    error => {
-      if (error.statusText === "UNAUTHORIZED") {
-        this.toastr.error("Error","Su sesión ha caducado, por favor vuelva a iniciar sesión.")
-      }
-      else if (error.statusText === "UNPROCESSABLE ENTITY") {
-        this.toastr.error("Error","No hemos podido identificarlo, por favor vuelva a iniciar sesión.")
-      }
-      else {
-        this.toastr.error("Error","Ha ocurrido un error. " + error.message)
-      }
-    })
+      error => {
+        if (error.statusText === "UNAUTHORIZED") {
+          this.toastr.error("Error", "Su sesión ha caducado, por favor vuelva a iniciar sesión.")
+        }
+        else if (error.statusText === "UNPROCESSABLE ENTITY") {
+          this.toastr.error("Error", "No hemos podido identificarlo, por favor vuelva a iniciar sesión.")
+        }
+        else {
+          this.toastr.error("Error", "Ha ocurrido un error. " + error.message)
+        }
+      })
 
   }
 
@@ -80,7 +118,7 @@ export class EntrenamientoRutinaCrearComponent implements OnInit {
     this.routerPath.navigate(['/persona/' + personaId]);
   }
 
-  selectionarRutina():void {
+  selectionarRutina(): void {
     this.esRutinaSeleccionada = true;
     console.log(this.rutinaSeleccionada)
   }
