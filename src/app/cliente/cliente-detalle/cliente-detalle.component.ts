@@ -17,6 +17,13 @@ export class ClienteDetalleComponent implements OnInit {
   personaElegida: Persona
   idUsuario: string
 
+  persona: Persona
+  imc: number
+  clasificacion: string
+  resultados: any
+  repeticiones_totales: number;
+  calorias_totales: number;
+
   constructor(
     private routerPath: Router,
     private router: ActivatedRoute,
@@ -32,12 +39,36 @@ export class ClienteDetalleComponent implements OnInit {
       this.elegida = true;
       this.personaElegida = persona;
       this.personas.push(this.personaElegida);
-    });;
-
+    });
   }
 
   personaReporte(idPersona: number): void {
     console.log("si")
-    this.routerPath.navigate(['/persona/reporte/' + idPersona]);
+    // this.routerPath.navigate(['/persona/reporte/' + idPersona]);
+
+    // const idPersona = parseInt(this.router.snapshot.params['id']);
+    let repeticiones_totales = 0
+    let calorias_totales = 0
+    this.personaService.darReporte(idPersona).subscribe((reporte) => {
+      //console.log(reporte)
+      this.persona = reporte.persona
+      this.imc = reporte.imc
+      this.clasificacion = reporte.clasificacion_imc
+      //this.resultados = reporte.resultados
+    });
+    this.personaService.darResultados(idPersona).subscribe((resultados) => {
+      console.log(resultados)
+      this.resultados = resultados
+      for(let i=0; i<resultados.length; i++){
+        repeticiones_totales = repeticiones_totales + resultados[i]['Repeticiones Ejecutadas'];
+        calorias_totales = calorias_totales + resultados[i]['Calorias Consumidas'];
+      }
+      this.repeticiones_totales = repeticiones_totales;
+      this.calorias_totales = calorias_totales;
+    });
+  }
+
+  volver(): void {
+    this.routerPath.navigate(['/cliente']);
   }
 }

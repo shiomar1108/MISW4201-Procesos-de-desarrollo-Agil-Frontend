@@ -50,6 +50,4 @@ export class PersonaReporteComponent implements OnInit {
     const idPersona = parseInt(this.router.snapshot.params['id']);
     this.routerPath.navigate(['/persona/' + idPersona]);
   }
-
-
 }
